@@ -1,3 +1,13 @@
 module.exports = {
-  reactStrictMode: true,
+    reactStrictMode: true,
+
+    async redirects() {
+        return [
+            {
+                source: '/',
+                destination: '/events/featured',
+                permanent: true,
+            },
+        ]
+    },
 }
