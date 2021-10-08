@@ -20,15 +20,20 @@ const generateRoutes = () => {
 
 
     // *** <Events> ***
-    const eventsFeaturedIndexPath = `/events/featured`;
     const eventsIndexPath = `/events`;
     const eventsNewPath = `/events/new`;
-    const eventsShowPath = eventId => `/events/${eventId}`;
+    const eventsShowPath = eventId => `/events/show/${eventId}`;
     const eventsEditPath = eventId => `/events/edit/${eventId}`;
     // API Routes:
     // const eventsApiCreatePath = `/api/events/create`;
     // const eventsApiUpdatePath = `/api/events/update`;
     // const eventsApiDestroyPath = `/api/events/destroy`;
+    // Others
+    const eventsFeaturedIndexPath = `/events/featured`;
+    // const eventsSlugLevel1Path = slugIdLevel1 => `/events/${slugIdLevel1}`;
+    const eventsSlugLevel2Path = (slugIdLevel1, slugIdLevel2) => `/events/${slugIdLevel1}/${slugIdLevel2}`;
+    const eventsSlugLevel3Path = (slugIdLevel1, slugIdLevel2, slugIdLevel3) => `/events/${slugIdLevel1}/${slugIdLevel2}/${slugIdLevel3}`;
+    const eventsSlugPath = (...slug) => `/events` + slug.map(slugItem => `/${slugItem}`).join('');
     // *** </Events> ***
 
     return {
@@ -47,7 +52,6 @@ const generateRoutes = () => {
         // },
 
         events: {
-            featuredIndexPath: eventsFeaturedIndexPath,
             indexPath: eventsIndexPath,
             newPath: eventsNewPath,
             showPath: eventsShowPath,
@@ -57,6 +61,11 @@ const generateRoutes = () => {
             //     updatePath: eventsApiUpdatePath,
             //     destroyPath: eventsApiDestroyPath,
             // },
+            featuredIndexPath: eventsFeaturedIndexPath,
+            // slugLevel1Path: eventsSlugLevel1Path,
+            filteredLevel2Path: eventsSlugLevel2Path,
+            filteredLevel3Path: eventsSlugLevel3Path,
+            filteredPath: eventsSlugPath,
         },
     };
 };
