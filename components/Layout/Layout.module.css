@@ -1,0 +1,6 @@
+.main {
+    margin: 3rem auto;
+    width: 90%;
+    max-width: 40rem;
+    min-height: 60vh;  /* This temporally makes the footer attached to the bottom */
+}
