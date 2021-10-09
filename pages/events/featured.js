@@ -4,16 +4,14 @@ import EventItemsList from "../../components/events/EventItemsList/EventItemsLis
 
 const EventsFeaturedIndexPage = () => {
     const router = useRouter();
-    console.log('router.pathname = ', router.pathname);
-    console.log('router.query = ', router.query);
+    // console.log('router.pathname = ', router.pathname);
+    // console.log('router.query = ', router.query);
     const featuredEvents = getFeaturedEvents();
 
     return (
         <div>
             <h1>Events Featured Index Page</h1>
-            <ul>
-                <EventItemsList events={featuredEvents}/>
-            </ul>
+            <EventItemsList events={featuredEvents}/>
         </div>
     );
 };

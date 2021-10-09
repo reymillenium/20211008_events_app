@@ -1,6 +1,7 @@
 import styles from './MainNavigation.module.css';
 import Link from "next/link";
 import generateRoutes from '../../../tools/generateRoutes';
+import Image from "next/image";
 
 function MainNavigation() {
     const routes = generateRoutes();
@@ -48,7 +49,14 @@ function MainNavigation() {
 
     return (
         <header className={styles.header}>
-            <div className={styles.logo}>Events 2021</div>
+            <div className={styles.logo}>
+                {/*<Image src="/event_started_checked_logo_290_x_290.png" alt="Vercel Logo" width={72} height={16} />*/}
+
+                    <Image src="/event_started_checked_logo_290_x_290.png" alt="Vercel Logo" width={32} height={32}/>
+                {/*<i style={{verticalAlign: 'baseline'}} className={" far fa-calendar-plus faa-wrench faa-fast"}/>*/}
+                Events 2021
+            </div>
+
             <nav>
                 <ul>
                     {eventsLinks}

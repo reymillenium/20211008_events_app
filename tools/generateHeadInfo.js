@@ -3,7 +3,7 @@ const generateHeadInfo = (componentName, pageProps) => {
     let description;
 
     switch (componentName) {
-        case 'FeaturedEventsPage':
+        case 'EventsFeaturedIndexPage':
             title = 'Featured Events 2021';
             description = 'Browse a list of highly active events';
             break;

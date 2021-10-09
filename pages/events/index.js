@@ -4,8 +4,8 @@ import EventItemsList from "../../components/events/EventItemsList/EventItemsLis
 
 const EventsIndexPage = () => {
     const router = useRouter();
-    console.log('router.pathname = ', router.pathname);
-    console.log('router.query = ', router.query);
+    // console.log('router.pathname = ', router.pathname);
+    // console.log('router.query = ', router.query);
     const allEvents = getAllEvents();
 
     return (
