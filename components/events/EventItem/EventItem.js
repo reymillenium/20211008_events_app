@@ -48,7 +48,7 @@ const EventItem = (props) => {
 
                 <div className={styles.actionsColumn}>
                     <Link href={showPath(eventId)}>
-                        <div className={styles.actionsRow + ' faa-parent animated-hover'} onMouseEnter={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
+                        <div className={styles.actionsDetailsBtnRow + ' faa-parent animated-hover'} onMouseEnter={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
                             <span className={"faa-ring faa-slow"}><i style={{marginTop: 4}} className={"fas fa-search"}/></span>
                             <span>&nbsp;&nbsp;Details</span>
                         </div>

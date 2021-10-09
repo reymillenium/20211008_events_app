@@ -56,16 +56,17 @@
     padding: 1rem;
 }
 
-.actionsRow {
+.actionsDetailsBtnRow {
     display: flex;
     flex-direction: row;
     padding: 0.5rem;
     cursor: pointer;
     width: fit-content;
 
+    /*background: #77002e;*/
+    /*background: #8d344b;*/
+    background-image: linear-gradient(#77002e, #8d344b);
 
-    /*background: #0079ff;*/
-    background: #8d344b;
     color: #fff;
     border-radius: 5px;
 }
