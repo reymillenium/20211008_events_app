@@ -1,6 +1,24 @@
 import styles from './FooterClassic.module.css';
 
+
 const FooterClassic = () => {
+
+    const addAnimationClassHandler = (event) => {
+        // setTimeout(function () {
+        //     event.target.classList.add("animated-hover");
+        // }, 2500);
+        // event.target.classList.add("animated-hover");
+        event.target.classList.toggle("animated-hover");
+    };
+
+    const removeAnimationClassHandler = (event) => {
+        setTimeout(function () {
+            // event.target.classList.remove("animated-hover");
+            event.target.classList.toggle("animated-hover");
+        }, 1000);
+    };
+
+
     return (
         <div className={styles.Container}>
             <div className={styles.Wrapper}>
@@ -28,14 +46,28 @@ const FooterClassic = () => {
 
                     <div className={styles.Column}>
                         <p className={styles.Title}>Social</p>
-                        <a className={styles.Link + ' faa-parent animated-hover'} href="#">
-                            <i className={styles.Icon + " fab fa-facebook-f faa-wrench faa-slow"}/>Facebook
+
+                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseOver={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
+                            <i className={styles.Icon + " fab fa-facebook-f faa-ring faa-slow"}/>Facebook
                         </a>
-                        <a className={styles.Link} href="#"><i className={styles.Icon + " fab fa-instagram"}/>Instagram</a>
-                        <a className={styles.Link} href="#"><i className={styles.Icon + " fab fa-youtube"}/>Youtube</a>
-                        <a className={styles.Link} href="#"><i className={styles.Icon + " fab fa-twitter"}/>Twitter</a>
+
+                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseOver={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
+                            <i className={styles.Icon + " fab fa-instagram faa-pulse faa-fast"}/>Instagram
+                        </a>
+
+                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseOver={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
+                            <i className={styles.Icon + " fab fa-youtube faa-tada faa-fast"}/>Youtube
+                        </a>
+
+                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseOver={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
+                            <i className={styles.Icon + " fab fa-twitter faa-wrench faa-fast"}/>Twitter
+                        </a>
                     </div>
                 </div>
+            </div>
+            <div className={styles.box}>
+                <h2>Demo: Button Link with Rubber Band Animation on Hover</h2>
+                <a href="#" className={styles.buttonD}>Button</a>
             </div>
         </div>
     );
