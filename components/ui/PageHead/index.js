@@ -8,7 +8,7 @@ const PageHead = (props) => {
             <Head>
                 <title>{headInfo.title}</title>
                 <meta name={"description"} content={`${headInfo.description}`}/>
-                <link rel="shortcut icon" href="/event_started_checked_logo_290_x_290.png"/>
+                <link rel="shortcut icon" href="/event_started_checked_logo_wine_290_x_290.png"/>
             </Head>
         </>
     );

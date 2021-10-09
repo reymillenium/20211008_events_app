@@ -1,4 +1,5 @@
 import {Fragment} from "react";
+import styles from './EventItemsList.module.css';
 import {useRouter} from "next/router";
 import generateRoutes from "../../../tools/generateRoutes";
 import EventItem from "../EventItem/EventItem";
@@ -10,7 +11,7 @@ const EventItemsList = (props) => {
 
     return (
         <Fragment>
-            <ul>
+            <ul className={styles.list}>
                 {eventsList}
             </ul>
         </Fragment>

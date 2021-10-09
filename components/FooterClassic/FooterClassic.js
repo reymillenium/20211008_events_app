@@ -47,28 +47,28 @@ const FooterClassic = () => {
                     <div className={styles.Column}>
                         <p className={styles.Title}>Social</p>
 
-                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseOver={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
+                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseEnter={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
                             <i className={styles.Icon + " fab fa-facebook-f faa-ring faa-slow"}/>Facebook
                         </a>
 
-                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseOver={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
+                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseEnter={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
                             <i className={styles.Icon + " fab fa-instagram faa-pulse faa-fast"}/>Instagram
                         </a>
 
-                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseOver={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
+                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseEnter={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
                             <i className={styles.Icon + " fab fa-youtube faa-tada faa-fast"}/>Youtube
                         </a>
 
-                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseOver={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
+                        <a className={styles.Link + ' faa-parent animated-hover'} href="#" onMouseEnter={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
                             <i className={styles.Icon + " fab fa-twitter faa-wrench faa-fast"}/>Twitter
                         </a>
                     </div>
                 </div>
             </div>
-            <div className={styles.box}>
-                <h2>Demo: Button Link with Rubber Band Animation on Hover</h2>
-                <a href="#" className={styles.buttonD}>Button</a>
-            </div>
+            {/*<div className={styles.box}>*/}
+            {/*    <h2>Demo: Button Link with Rubber Band Animation on Hover</h2>*/}
+            {/*    <a href="#" className={styles.buttonD}>Button</a>*/}
+            {/*</div>*/}
         </div>
     );
 };

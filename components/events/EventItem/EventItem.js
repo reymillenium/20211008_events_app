@@ -1,4 +1,5 @@
 import {Fragment} from "react";
+import styles from './EventItem.module.css';
 import {useRouter} from "next/router";
 import generateRoutes from "../../../tools/generateRoutes";
 import Image from "next/image";
@@ -11,31 +12,48 @@ const EventItem = (props) => {
     const dateLabel = new Date(date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'});
     // const dateLabel = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'}).format(new Date(date));
 
+    const locationLabel = location.replace(', ', '\n');
+
+    const addAnimationClassHandler = (event) => {
+        // event.target.classList.add("animated-hover");
+        event.target.classList.toggle("animated-hover");
+    };
+
+    const removeAnimationClassHandler = (event) => {
+        setTimeout(function () {
+            // event.target.classList.remove("animated-hover");
+            event.target.classList.toggle("animated-hover");
+        }, 1000);
+    };
+
     return (
         <Fragment>
-            <li>
-                {/* Works in both cases */}
-                <img src={`/${image}`} height={200} width={200} alt={title}/>
-                {/*<Image src={`/${image}`} alt={title} width={200} height={200}/>*/}
+            <li className={styles.item}>
+                {/*<img src={`/${image}`} alt={title}/>*/}
+                <Image src={`/${image}`} alt={title} width={300} height={224} objectFit={'cover'} layout={'intrinsic'}/>
 
-                <div>
+                <div className={styles.content}>
                     <div>
                         <h2>{title}</h2>
                     </div>
 
-                    <div>
+                    <div className={styles.date}>
                         <time>{dateLabel}</time>
                     </div>
 
-                    <div>
-                        <address>{location}</address>
+                    <div className={styles.address}>
+                        <address>{locationLabel}</address>
                     </div>
                 </div>
 
-                <div>
-                    <Link href={showPath(eventId)}>DETAILS</Link>
+                <div className={styles.actionsColumn}>
+                    <Link href={showPath(eventId)}>
+                        <div className={styles.actionsRow + ' faa-parent animated-hover'} onMouseEnter={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
+                            <span className={"faa-ring faa-slow"}><i style={{marginTop: 4}} className={"fas fa-search"}/></span>
+                            <span>&nbsp;&nbsp;Details</span>
+                        </div>
+                    </Link>
                 </div>
-
             </li>
         </Fragment>
     );
