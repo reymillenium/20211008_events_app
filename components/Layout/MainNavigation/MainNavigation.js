@@ -52,9 +52,9 @@ function MainNavigation() {
             <div className={styles.logo}>
                 {/*<Image src="/event_started_checked_logo_290_x_290.png" alt="Vercel Logo" width={72} height={16} />*/}
 
-                    <Image src="/event_started_checked_logo_290_x_290.png" alt="Vercel Logo" width={32} height={32}/>
+                    {/*<Image src="/event_started_checked_logo_290_x_290.png" alt="Vercel Logo" width={32} height={32}/>*/}
                 {/*<i style={{verticalAlign: 'baseline'}} className={" far fa-calendar-plus faa-wrench faa-fast"}/>*/}
-                Events 2021
+                <i style={{verticalAlign: 'middle', color: 'white', fontWeight: 'inherit', marginBottom: 6}} className={" far fa-calendar-alt faa-wrench faa-fast"}/>&nbsp;Events 2021
             </div>
 
             <nav>

@@ -14,15 +14,9 @@ const EventItem = (props) => {
     return (
         <Fragment>
             <li>
-                {/* Do not works in featured */}
-                {/*<img src={props.event.image} alt={props.event.title}/>*/}
-                {/*<img src={props.event.image} height={200} width={200} alt={props.event.title}/>*/}
-
-                {/* Works in both*/}
-                <img src={'/' + image} height={200} width={200} alt={title}/>
-
-                {/* Works in both */}
-                {/*<Image src={'/' + props.event.image} alt={props.event.title} width={200} height={200}/>*/}
+                {/* Works in both cases */}
+                <img src={`/${image}`} height={200} width={200} alt={title}/>
+                {/*<Image src={`/${image}`} alt={title} width={200} height={200}/>*/}
 
                 <div>
                     <div>
