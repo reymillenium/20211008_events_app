@@ -25,9 +25,12 @@ const FooterClassic = () => {
                         <a className={styles.Link} href="#">Australia</a>
                         <a className={styles.Link} href="#">Support</a>
                     </div>
+
                     <div className={styles.Column}>
                         <p className={styles.Title}>Social</p>
-                        <a className={styles.Link} href="#"><i className={styles.Icon + " fab fa-facebook-f"}/>Facebook</a>
+                        <a className={styles.Link + ' faa-parent animated-hover'} href="#">
+                            <i className={styles.Icon + " fab fa-facebook-f faa-wrench faa-slow"}/>Facebook
+                        </a>
                         <a className={styles.Link} href="#"><i className={styles.Icon + " fab fa-instagram"}/>Instagram</a>
                         <a className={styles.Link} href="#"><i className={styles.Icon + " fab fa-youtube"}/>Youtube</a>
                         <a className={styles.Link} href="#"><i className={styles.Icon + " fab fa-twitter"}/>Twitter</a>
