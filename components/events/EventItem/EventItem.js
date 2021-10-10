@@ -1,30 +1,17 @@
 import {Fragment} from "react";
 import styles from './EventItem.module.css';
-import {useRouter} from "next/router";
+
 import generateRoutes from "../../../tools/generateRoutes";
 import Image from "next/image";
-import Link from "next/link";
+import ButtonLink from "../../ui/ButtonLink/ButtonLink";
 
 const EventItem = (props) => {
-    const router = useRouter();
     const {showPath} = generateRoutes().events;
-    const {id: eventId, title, description, location, date, image, isFeatured} = props.event;
+    const {id: eventId, title, location, date, image, isFeatured} = props.event;
     const dateLabel = new Date(date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'});
     // const dateLabel = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'}).format(new Date(date));
 
     const locationLabel = location.replace(', ', '\n');
-
-    const addAnimationClassHandler = (event) => {
-        // event.target.classList.add("animated-hover");
-        event.target.classList.toggle("animated-hover");
-    };
-
-    const removeAnimationClassHandler = (event) => {
-        setTimeout(function () {
-            // event.target.classList.remove("animated-hover");
-            event.target.classList.toggle("animated-hover");
-        }, 1000);
-    };
 
     return (
         <Fragment>
@@ -47,12 +34,7 @@ const EventItem = (props) => {
                 </div>
 
                 <div className={styles.actionsColumn}>
-                    <Link href={showPath(eventId)}>
-                        <div className={styles.actionsDetailsBtnRow + ' faa-parent animated-hover'} onMouseEnter={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
-                            <span className={"faa-ring faa-slow"}><i style={{marginTop: 4}} className={"fas fa-search"}/></span>
-                            <span>&nbsp;&nbsp;Details</span>
-                        </div>
-                    </Link>
+                    <ButtonLink path={showPath(eventId)}/>
                 </div>
             </li>
         </Fragment>
