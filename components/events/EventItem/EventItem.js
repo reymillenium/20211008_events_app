@@ -34,7 +34,7 @@ const EventItem = (props) => {
                 </div>
 
                 <div className={styles.actionsColumn}>
-                    <ButtonLink path={showPath(eventId)}/>
+                    <ButtonLink path={showPath(eventId)}>Details</ButtonLink>
                 </div>
             </li>
         </Fragment>
