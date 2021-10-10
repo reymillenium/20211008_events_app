@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./ButtonLink.module.css";
+import ArrowRightIcon from "../../icons/arrow-right-icon";
 
 const ButtonLink = (props) => {
 
@@ -21,6 +22,7 @@ const ButtonLink = (props) => {
                 <span className={"faa-ring faa-slow"}><i style={{marginTop: 4}} className={"fas fa-search"}/></span>
                 <span>&nbsp;&nbsp;{props.children}</span>
             </div>
+
         </Link>
     );
 };

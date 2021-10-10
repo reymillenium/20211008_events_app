@@ -4,6 +4,10 @@ import styles from './EventItem.module.css';
 import generateRoutes from "../../../tools/generateRoutes";
 import Image from "next/image";
 import ButtonLink from "../../ui/ButtonLink/ButtonLink";
+import ButtonLinkGreen from "../../ui/ButtonLinkGreen/ButtonLinkGreen";
+import AddressIcon from "../../icons/address-icon";
+import ArrowRightIcon from "../../icons/arrow-right-icon";
+import DateIcon from "../../icons/date-icon";
 
 const EventItem = (props) => {
     const {showPath} = generateRoutes().events;
@@ -25,16 +29,23 @@ const EventItem = (props) => {
                     </div>
 
                     <div className={styles.date}>
+                        {/*<div className="icon">*/}
+                        <DateIcon/>
+                        {/*</div>*/}
                         <time>{dateLabel}</time>
                     </div>
 
                     <div className={styles.address}>
+                        {/*<div className="icon">*/}
+                        <AddressIcon/>
+                        {/*</div>*/}
                         <address>{locationLabel}</address>
                     </div>
                 </div>
 
                 <div className={styles.actionsColumn}>
                     <ButtonLink path={showPath(eventId)}>Details</ButtonLink>
+                    {/*<ButtonLinkGreen path={showPath(eventId)}>Details</ButtonLinkGreen>*/}
                 </div>
             </li>
         </Fragment>
