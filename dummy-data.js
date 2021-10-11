@@ -5,7 +5,7 @@ const DUMMY_EVENTS = [
         description:
             'Everyone can learn to code! Yes, everyone! In this live event, we are going to go through all the key basics and get you started with programming as well.',
         location: 'Somestreet 25, 12345 San Somewhereo',
-        date: '2021-05-12',
+        date: '2021-03-12',
         image: 'images/events/james-harrison-vpOeXr5wmR4-unsplash.jpg',
         isFeatured: false,
     },
@@ -31,6 +31,69 @@ const DUMMY_EVENTS = [
     },
 ];
 
+export const DUMMY_MONTHS_DATA = [
+    {
+        // value: '01',
+        value: 1,
+        label: 'January'
+    },
+    {
+        // value: '02',
+        value: 2,
+        label: 'February'
+    },
+    {
+        // value: '03',
+        value: 3,
+        label: 'March'
+    },
+    {
+        // value: '04',
+        value: 4,
+        label: 'April'
+    },
+    {
+        // value: '05',
+        value: 5,
+        label: 'May'
+    },
+    {
+        // value: '06',
+        value: 6,
+        label: 'June'
+    },
+    {
+        // value: '07',
+        value: 7,
+        label: 'July'
+    },
+    {
+        // value: '08',
+        value: 8,
+        label: 'August'
+    },
+    {
+        // value: '09',
+        value: 9,
+        label: 'September'
+    },
+    {
+        // value: '10',
+        value: 10,
+        label: 'October'
+    },
+    {
+        // value: '11',
+        value: 11,
+        label: 'November'
+    },
+    {
+        // value: '12',
+        value: 12,
+        label: 'December'
+    },
+];
+
 export function getFeaturedEvents() {
     return DUMMY_EVENTS.filter((event) => event.isFeatured);
 }
@@ -40,11 +103,17 @@ export function getAllEvents() {
 }
 
 export function getFilteredEvents(dateFilter) {
-    const {year, month} = dateFilter;
+    const {year: yearString, month: monthString} = dateFilter;
+    console.log('The year = ' + yearString + ' and the month = ' + monthString);
+    const year = parseInt(yearString);
+    const month = parseInt(monthString);
 
     let filteredEvents = DUMMY_EVENTS.filter((event) => {
         const eventDate = new Date(event.date);
+        console.log('eventDate.getFullYear() = ', eventDate.getFullYear());
+        console.log('eventDate.getMonth() = ', eventDate.getMonth());
         return eventDate.getFullYear() === year && eventDate.getMonth() === month - 1;
+        // return eventDate.getFullYear() === year && eventDate.getMonth() === month;
     });
 
     return filteredEvents;

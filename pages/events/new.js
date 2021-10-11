@@ -8,7 +8,7 @@ const EventsNewPage = () => {
 
     return (
         <div>
-            <h1>Events New Page</h1>
+            <h1>New Event</h1>
 
         </div>
     );

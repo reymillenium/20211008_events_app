@@ -1,6 +1,7 @@
 import {useRouter} from "next/router";
 import {getFeaturedEvents} from "../../dummy-data";
 import EventItemsList from "../../components/events/EventItemsList/EventItemsList";
+import EventsSearch from "../../components/events/EventsSearch/EventsSearch";
 
 const EventsFeaturedIndexPage = () => {
     const router = useRouter();
@@ -10,7 +11,8 @@ const EventsFeaturedIndexPage = () => {
 
     return (
         <div>
-            <h1>Events Featured Index Page</h1>
+            <h1>List of Featured Events</h1>
+            <EventsSearch events={featuredEvents}/>
             <EventItemsList events={featuredEvents}/>
         </div>
     );
