@@ -15,21 +15,22 @@ Array.prototype.unique = function () {
 const EventsSearch = (props) => {
     const [yearState, setYearState] = useState();
     const [monthState, setMonthState] = useState();
+    const {initialYear, initialMonth} = props;
+
+    // console.log('initialYear = ' + initialYear + ' and initialMonth = ' + initialMonth);
 
     const events = props.events || getAllEvents();
     const years = events.map(event => new Date(event.date).toLocaleDateString('en-US', {year: 'numeric', timeZone: 'UTC'})).unique();
     const eventsYearsSelectOptions = years.map(eventYear => <option key={eventYear} value={eventYear}>{eventYear}</option>);
-
-
     const monthsSelectOptions = DUMMY_MONTHS_DATA.map(monthData => <option key={monthData.value} value={monthData.value}>{monthData.label}</option>);
 
     const router = useRouter();
     const {filteredPath} = generateRoutes().events;
 
     useEffect(() => {
-        setYearState(years[0]);
-        setMonthState(DUMMY_MONTHS_DATA[0].value);
-    }, [])
+        setYearState(initialYear || years[0]);
+        setMonthState(initialMonth || DUMMY_MONTHS_DATA[0].value);
+    }, [initialYear, initialMonth])
 
 
     const submitFormHandler = async (event) => {
@@ -39,13 +40,13 @@ const EventsSearch = (props) => {
 
     const selectYearChangeHandler = (event) => {
         const year = event.target.value;
-        console.log('The selected year is: ', year);
+        // console.log('EventsSearch -> The selected year is: ', year);
         setYearState(year);
     };
 
     const selectMonthChangeHandler = (event) => {
         const month = event.target.value;
-        console.log('The selected month is: ', month);
+        // console.log('EventsSearch -> The selected month is: ', month);
         setMonthState(month);
     };
 

@@ -5,7 +5,7 @@ import generateRoutes from "../../../tools/generateRoutes";
 const MainNavigationEvents = () => {
     const routes = generateRoutes();
     const eventsRoutes = routes.events;
-    console.log(eventsRoutes);
+    // console.log('MainNavigationEvents -> ', eventsRoutes);
 
     const eventsLinks = (
         <>
