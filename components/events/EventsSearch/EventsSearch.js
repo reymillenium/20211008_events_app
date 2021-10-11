@@ -17,6 +17,7 @@ const EventsSearch = (props) => {
     const [monthState, setMonthState] = useState();
     const {initialYear, initialMonth} = props;
 
+    console.log('Rendering EventsSearch');
     // console.log('initialYear = ' + initialYear + ' and initialMonth = ' + initialMonth);
 
     const events = props.events || getAllEvents();
@@ -30,7 +31,7 @@ const EventsSearch = (props) => {
     useEffect(() => {
         setYearState(initialYear || years[0]);
         setMonthState(initialMonth || DUMMY_MONTHS_DATA[0].value);
-    }, [initialYear, initialMonth])
+    }, [initialYear, initialMonth]);
 
 
     const submitFormHandler = async (event) => {
@@ -38,16 +39,24 @@ const EventsSearch = (props) => {
         await router.replace(filteredPath(yearState, monthState));
     };
 
-    const selectYearChangeHandler = (event) => {
+    const selectYearChangeHandler = async (event) => {
         const year = event.target.value;
         // console.log('EventsSearch -> The selected year is: ', year);
         setYearState(year);
+        if (year !== yearState) {
+            // console.log('EventsSearch -> selectYearChangeHandler');
+            await router.replace(filteredPath(year, monthState));
+        }
     };
 
-    const selectMonthChangeHandler = (event) => {
+    const selectMonthChangeHandler = async (event) => {
         const month = event.target.value;
         // console.log('EventsSearch -> The selected month is: ', month);
         setMonthState(month);
+        if (month !== monthState) {
+            // console.log('EventsSearch -> selectMonthChangeHandler');
+            await router.replace(filteredPath(yearState, month));
+        }
     };
 
     return (
@@ -67,7 +76,7 @@ const EventsSearch = (props) => {
                     </select>
                 </div>
 
-                <button>Search</button>
+                <button type={'submit'}>Search</button>
             </div>
         </form>
     );
