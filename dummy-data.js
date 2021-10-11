@@ -105,14 +105,21 @@ export function getAllEvents() {
 export function getFilteredEvents(dateFilter) {
     const {year: yearString, month: monthString} = dateFilter;
     // console.log('getFilteredEvents -> The year = ' + yearString + ' and the month = ' + monthString);
-    const year = parseInt(yearString);
-    const month = parseInt(monthString);
+    const year = yearString !== 'All' ? parseInt(yearString) : yearString;
+    const month = monthString !== 'All' ? parseInt(monthString) : monthString;
 
     let filteredEvents = DUMMY_EVENTS.filter((event) => {
         const eventDate = new Date(event.date);
-        // console.log('eventDate.getFullYear() = ', eventDate.getFullYear());
-        // console.log('eventDate.getMonth() = ', eventDate.getMonth());
-        return eventDate.getFullYear() === year && eventDate.getMonth() === month - 1;
+        if (yearString === 'All' && monthString === 'All') {
+            return DUMMY_EVENTS;
+        } else if (yearString === 'All' && monthString !== 'All') {
+            return eventDate.getMonth() === month - 1;
+        } else if (yearString !== 'All' && monthString === 'All') {
+            return eventDate.getFullYear() === year;
+        } else {
+            return eventDate.getFullYear() === year && eventDate.getMonth() === month - 1;
+        }
+
         // return eventDate.getFullYear() === year && eventDate.getMonth() === month;
     });
 

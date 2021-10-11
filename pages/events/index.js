@@ -1,3 +1,4 @@
+import {Fragment} from "react";
 import {useRouter} from "next/router";
 import {getAllEvents} from "../../dummy-data";
 import EventItemsList from "../../components/events/EventItemsList/EventItemsList";
@@ -10,11 +11,11 @@ const EventsIndexPage = () => {
     const allEvents = getAllEvents();
 
     return (
-        <div>
+        <Fragment>
             <h1>Full List of Events</h1>
             <EventsSearch events={allEvents}/>
             <EventItemsList events={allEvents}/>
-        </div>
+        </Fragment>
     );
 };
 

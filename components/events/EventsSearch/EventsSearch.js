@@ -13,8 +13,9 @@ Array.prototype.unique = function () {
 
 
 const EventsSearch = (props) => {
-    const [yearState, setYearState] = useState();
-    const [monthState, setMonthState] = useState();
+    const initialStateValue = 'All';
+    const [yearState, setYearState] = useState(initialStateValue);
+    const [monthState, setMonthState] = useState(initialStateValue);
     const {initialYear, initialMonth} = props;
 
     console.log('Rendering EventsSearch');
@@ -22,15 +23,27 @@ const EventsSearch = (props) => {
 
     const events = props.events || getAllEvents();
     const years = events.map(event => new Date(event.date).toLocaleDateString('en-US', {year: 'numeric', timeZone: 'UTC'})).unique();
-    const eventsYearsSelectOptions = years.map(eventYear => <option key={eventYear} value={eventYear}>{eventYear}</option>);
+    let yearsArrayValues = [...years];
+    yearsArrayValues.unshift('All');
+    const eventsYearsSelectOptions = yearsArrayValues.map(eventYear => <option key={eventYear} value={eventYear}>{eventYear}</option>);
+
+    const initialSelectOption = <option key={'All'} value={'All'}>{'All'}</option>;
     const monthsSelectOptions = DUMMY_MONTHS_DATA.map(monthData => <option key={monthData.value} value={monthData.value}>{monthData.label}</option>);
+    monthsSelectOptions.unshift(initialSelectOption);
+
+    console.log('eventsYearsSelectOptions = ', eventsYearsSelectOptions);
+    console.log('eventsYearsSelectOptions[0] = ', eventsYearsSelectOptions);
 
     const router = useRouter();
     const {filteredPath} = generateRoutes().events;
 
     useEffect(() => {
-        setYearState(initialYear || years[0]);
-        setMonthState(initialMonth || DUMMY_MONTHS_DATA[0].value);
+        // setYearState(initialYear || years[0]);
+        // setYearState(initialYear || yearsArrayValues[0]);
+        setYearState(initialYear || initialStateValue);
+
+        // setMonthState(initialMonth || DUMMY_MONTHS_DATA[0].value);
+        setMonthState(initialMonth || initialStateValue);
     }, [initialYear, initialMonth]);
 
 
@@ -64,14 +77,23 @@ const EventsSearch = (props) => {
             <div className={styles.controls}>
                 <div className={styles.control}>
                     <label htmlFor="year">Year</label>
-                    <select name="year" id="year" value={yearState} onChange={selectYearChangeHandler}>
+                    <select
+                        id="year"
+                        name="year"
+                        value={yearState}
+                        onChange={selectYearChangeHandler}
+                    >
                         {eventsYearsSelectOptions}
                     </select>
                 </div>
 
                 <div className={styles.control}>
                     <label htmlFor="month">Month</label>
-                    <select name="month" id="month" value={monthState} onChange={selectMonthChangeHandler}>
+                    <select
+                        id="month"
+                        name="month"
+                        value={monthState}
+                        onChange={selectMonthChangeHandler}>
                         {monthsSelectOptions}
                     </select>
                 </div>
