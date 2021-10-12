@@ -32,7 +32,7 @@ const FilteredEventsPage = () => {
             </EventContent>
         );
     } else {
-        const filteredEvents = getFilteredEvents({year: yearStr, month: monthStr});
+        const filteredEvents = getFilteredEvents({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')});
         titleLabel = `List of `;
         if (yearStr === 'All' && monthStr === 'All' && isFeaturedStr === 'false') {
             titleLabel += `all the Events`;

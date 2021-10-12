@@ -103,8 +103,7 @@ export function getAllEvents() {
 }
 
 export function getFilteredEvents(dateFilter) {
-    const {year: yearString, month: monthString} = dateFilter;
-    // console.log('getFilteredEvents -> The year = ' + yearString + ' and the month = ' + monthString);
+    const {year: yearString, month: monthString, isFeatured} = dateFilter;
     const year = yearString !== 'All' ? parseInt(yearString) : yearString;
     const month = monthString !== 'All' ? parseInt(monthString) : monthString;
 
@@ -112,9 +111,8 @@ export function getFilteredEvents(dateFilter) {
         const eventDate = new Date(event.date);
         const yearCondition = yearString !== 'All' ? (eventDate.getFullYear() === year) : eventDate;
         const monthCondition = monthString !== 'All' ? (eventDate.getMonth() === month - 1) : eventDate;
-        // console.log('yearCondition = ', yearCondition);
-        // console.log('monthCondition = ', monthCondition);
-        return (yearCondition && monthCondition);
+        const isFeaturedCondition = isFeatured ? event.isFeatured : event;
+        return (yearCondition && monthCondition && isFeaturedCondition);
 
         // if (yearString === 'All' && monthString === 'All') {
         //     return DUMMY_EVENTS;
