@@ -4,12 +4,12 @@ const generateHeadInfo = (componentName, pageProps) => {
 
     switch (componentName) {
         case 'EventsFeaturedIndexPage':
-            title = 'Featured Events 2021';
+            title = 'Featured Miami Events';
             description = 'Browse a list of highly active events';
             break;
 
         case 'EventsIndexPage':
-            title = 'Events 2021';
+            title = 'Miami Events';
             description = 'Browse a list of highly active events';
             break;
 
@@ -24,12 +24,12 @@ const generateHeadInfo = (componentName, pageProps) => {
             break;
 
         case 'Error404':
-            title = 'Events 2021';
+            title = 'Miami Events';
             description = 'The resource you are looking for, does not exists';
             break;
 
         default:
-            title = 'Events 2021';
+            title = 'Miami Events';
             description = 'A sample Next.js Web App to manage some events';
             break;
     }
