@@ -9,17 +9,13 @@ const FilteredEventsPage = () => {
     const router = useRouter();
     const pathname = router.pathname;
     const query = router.query;
+    if (!query.slug) {
+        console.log('loading');
+        return <p className={'center'}>Loading...</p>;
+    }
+
     const slug = query.slug || [];
-    const [year, month] = slug;
-    // const eventsRoutes = generateRoutes().events;
-    // console.log('FilteredEventsPage -> router.pathname = ', pathname);
-    // console.log('FilteredEventsPage -> router.query = ', query);
-    // console.log('FilteredEventsPage -> router.query.slug = ', slug);
-
-    // console.log('FilteredEventsPage -> ' + eventsRoutes.filteredPath(2, 4, 6, 7)); // Ok. It works.
-    // console.log(eventsRoutes.filteredPath(...slug)); // Ok. It works.
-    // console.log('FilteredEventsPage -> year = ' + year + ' and month = ' + month);
-
+    const [year, month, isFeatured] = slug;
     const filteredEvents = getFilteredEvents({year: year, month: month});
 
     let filteredEventsContent;
@@ -36,7 +32,7 @@ const FilteredEventsPage = () => {
     return (
         <div>
             <h1>Events Slug Page</h1>
-            <EventsSearch initialYear={year} initialMonth={month}/>
+            <EventsSearch initialYear={year} initialMonth={month} initialIsFeatured={isFeatured}/>
             {filteredEventsContent}
         </div>
     );

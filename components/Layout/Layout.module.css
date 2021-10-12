@@ -4,3 +4,10 @@
     /*max-width: 40rem;*/
     min-height: 60vh;  /* This temporally makes the footer attached to the bottom */
 }
+
+
+.main h1 {
+    margin-left: 24px;
+    /*margin: 2rem auto;*/
+
+}
