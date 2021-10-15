@@ -1,11 +1,13 @@
 import {Fragment, useState, useEffect} from "react";
 import {useRouter} from "next/router";
-import {getAllEvents} from "../../dummy-data";
+import {getAllEvents} from "../../lib/EventsAPI";
 import EventItemsList from "../../components/events/EventItemsList/EventItemsList";
 import EventsSearch from "../../components/events/EventsSearch/EventsSearch";
+import LoadingSpinner from "../../components/ui/LoadingSpinner/LoadingSpinner";
+import useHttp from "../../hooks/use-http";
+import styles from '../../styles/EventsIndex.module.css';
 
 const firebaseUrl = `https://events-app-92d92-default-rtdb.firebaseio.com/events.json`;
-
 
 const EventsIndexPage = (props) => {
     // const allEvents = getAllEvents();
@@ -15,63 +17,104 @@ const EventsIndexPage = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [errorState, setErrorState] = useState(null);
 
-    useEffect(() => {
+    // useEffect(()  =>  {
+    //     setIsLoading(true);
+    //     fetch(firebaseUrl)
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             const transformedEvents = [];
+    //             for (const key in data) {
+    //                 transformedEvents.push({
+    //                     id: key,
+    //                     ...data[key],
+    //                 });
+    //             }
+    //             setEvents(transformedEvents);
+    //             setIsLoading(false);
+    //         }).catch(error => {
+    //         setErrorState(error.message);
+    //         setIsLoading(false);
+    //     });
+    // }, []);
+    // if (errorState) {
+    //     return <p>Failed to load.</p>;
+    // }
+    // if (isLoading) {
+    //     return <p>Loading...</p>;
+    // }
+    // if (!events) {
+    //     return <p>No data yet.</p>;
+    // }
+
+    // Method # 4: Using the getStaticProps function with client side fetching (useEffect)
+    useEffect(async ()  =>  {
         setIsLoading(true);
-        fetch(firebaseUrl)
-            .then((response) => response.json())
-            .then((data) => {
-                const transformedEvents = [];
-                for (const key in data) {
-                    transformedEvents.push({
-                        id: key,
-                        ...data[key],
-                    });
-                }
-                setEvents(transformedEvents);
-                setIsLoading(false);
-            }).catch(error => {
+        try {
+            const events = await getAllEvents();
+            setEvents(events);
+            setIsLoading(false);
+        } catch (error) {
             setErrorState(error.message);
             setIsLoading(false);
-        });
+        }
     }, []);
 
-    if (errorState) {
-        return <p>Failed to load.</p>;
-    }
+    let content;
     if (isLoading) {
-        return <p>Loading...</p>;
+        content = (
+            <div className={styles.centered}>
+                <LoadingSpinner/>
+            </div>
+        );
+    } else if (errorState) {
+        content = <p className={'centered focused'}>{errorState}</p>;
+    } else if (!isLoading && (!events || events.length === 0)) {
+        content = <p>No data yet.</p>;
+    } else {
+        content = <EventItemsList events={events}/>;
     }
-    if (!events) {
-        return <p>No data yet.</p>;
-    }
+
+
+    // Variant # 5: Using the getStaticProps function with client side fetching using a custom hook and useEffect
+    // const initialEventsState = props.events;
+    // const {sendRequest: getAllEventsRequest, status: getAllEventsStatus, data: loadedEvents, error: getAllEventsError} = useHttp(getAllEvents, true, initialEventsState);
+    //
+    // useEffect(() => {
+    //     getAllEventsRequest().then(r => {
+    //     });
+    // }, [getAllEventsRequest]);
+    //
+    // let content;
+    // if (getAllEventsStatus === 'pending') {
+    //     content = (
+    //         <div className={styles.centered}>
+    //             <LoadingSpinner/>
+    //         </div>
+    //     );
+    // } else if (getAllEventsError) {
+    //     content = <p className={'centered focused'}>{getAllEventsError}</p>;
+    // } else if (getAllEventsStatus === 'completed' && (!loadedEvents || loadedEvents.length === 0)) {
+    //     content = <p>No data yet.</p>;
+    // } else {
+    //     content = <EventItemsList events={loadedEvents}/>;
+    // }
 
     return (
         <Fragment>
             <h1>Full List of Events</h1>
             <EventsSearch events={events}/>
-            <EventItemsList events={events}/>
+            {content}
+            {/*<EventItemsList events={events}/>*/}
         </Fragment>
     );
 };
 
 export async function getStaticProps(context) {
     console.log('EventsIndexPage -> (Re-Generating...');
-    const response = await fetch(
-        firebaseUrl
-    );
-    const data = await response.json();
-
-    const transformedEvents = [];
-
-    for (const key in data) {
-        transformedEvents.push({
-            id: key,
-            ...data[key],
-        });
-    }
+    const allEvents = await getAllEvents();
 
     return {
-        props: {events: transformedEvents},
+        props: {events: allEvents},
         revalidate: 10
     };
 }
