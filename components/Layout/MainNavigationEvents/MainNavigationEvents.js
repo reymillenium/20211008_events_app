@@ -10,7 +10,7 @@ const MainNavigationEvents = () => {
     const eventsLinks = (
         <>
             <li>
-                <Link href={eventsRoutes.indexPath}>
+                <Link href={eventsRoutes.indexPath} passHref>
                     <div>
                         <i className={" far fa-calendar-alt faa-wrench faa-fast"}/>&nbsp;Events
                         {/*New Event*/}
@@ -19,7 +19,7 @@ const MainNavigationEvents = () => {
             </li>
 
             <li>
-                <Link href={eventsRoutes.featuredIndexPath}>
+                <Link href={eventsRoutes.featuredIndexPath} passHref>
                     <div>
                         <i className={" far fa-calendar-check faa-wrench faa-fast"}/>&nbsp;Featured
                         {/*New Event*/}
@@ -28,7 +28,7 @@ const MainNavigationEvents = () => {
             </li>
 
             <li>
-                <Link href={eventsRoutes.newPath}>
+                <Link href={eventsRoutes.newPath} passHref>
                     <div>
                         <i className={" far fa-calendar-plus faa-wrench faa-fast"}/>&nbsp;New Event
                         {/*New Event*/}

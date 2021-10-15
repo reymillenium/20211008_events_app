@@ -46,7 +46,7 @@ const EventsSearch = (props) => {
         } else {
             setIsFeaturedState(initialIsFeaturedStateValue);
         }
-    }, [initialYear, initialMonth, initialIsFeatured]);
+    }, [initialYear, initialMonth, initialIsFeatured, initialIsFeaturedStateValue]);
 
 
     useDidMountEffect(async () => {

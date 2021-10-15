@@ -17,7 +17,7 @@ const ButtonLink = (props) => {
     };
 
     return (
-        <Link href={props.path}>
+        <Link href={props.path} passHref>
             <div className={styles.actionsDetailsBtnRow + ' faa-parent animated-hover'} onMouseEnter={removeAnimationClassHandler} onMouseLeave={addAnimationClassHandler}>
                 <span className={"faa-ring faa-slow"}><i style={{marginTop: 4}} className={"fas fa-search"}/></span>
                 <span>&nbsp;&nbsp;{props.children}</span>
