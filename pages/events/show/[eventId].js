@@ -1,18 +1,18 @@
 import {Fragment} from "react";
 import {useRouter} from "next/router";
-import {getEventById, getAllEvents} from "../../../dummy-data";
+import {getEventById} from "../../../dummy-data";
 import ErrorAlert from "../../../components/ui/ErrorAlert/ErrorAlert";
 
 import EventSummary from "../../../components/events/EventDetail/EventSummary";
 import EventLogistics from "../../../components/events/EventDetail/EventLogistics";
 import EventContent from "../../../components/events/EventDetail/EventContent";
+import {getSingleEvent, getAllEvents} from "../../../lib/EventsAPI";
 
 const EventsShowPage = (props) => {
     const router = useRouter();
     const pathname = router.pathname;
     const {eventId} = router.query;
-    const event = getEventById(eventId);
-    // const {event} = props;
+    const {event} = props;
 
     // console.log('router.pathname = ', router.pathname);
     // console.log('router.query = ', router.query);
@@ -34,7 +34,6 @@ const EventsShowPage = (props) => {
             <EventContent>
                 <p>{event.description}</p>
             </EventContent>
-            {/*<EventItem event={event}/>*/}
         </Fragment>
     );
 };
@@ -44,7 +43,7 @@ export default EventsShowPage;
 export async function getStaticPaths() {
     let paths = [];
     try {
-        const events = getAllEvents();
+        const events = await getAllEvents();
         paths = events.map(event => ({params: {eventId: event.id.toString()},}));
     } catch (error) {
         console.log('error = ', error);
@@ -70,12 +69,12 @@ export async function getStaticPaths() {
 // but in this case is dynamic. There is no way to know which item will be clicked by the user in order to render it's details page, so Next.Js needs to pre-generate ALL OF THEM (all the possible URLs) in advance, during the build process.
 export async function getStaticProps(context) {
     const eventId = context.params.eventId;
-    const event = getEventById(eventId);
+    const event = await getSingleEvent(eventId);
 
     return {
         props: {
             event: event,
         }, // will be passed to the page component as props
-        revalidate: 300,
+        revalidate: 10,
     };
 }
