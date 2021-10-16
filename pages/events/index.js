@@ -1,11 +1,11 @@
 import {Fragment, useState, useEffect} from "react";
-import {useRouter} from "next/router";
 import {getAllEvents} from "../../lib/EventsAPI";
 import EventItemsList from "../../components/events/EventItemsList/EventItemsList";
 import EventsSearch from "../../components/events/EventsSearch/EventsSearch";
 import LoadingSpinner from "../../components/ui/LoadingSpinner/LoadingSpinner";
 import useHttp from "../../hooks/use-http";
 import styles from '../../styles/EventsIndex.module.css';
+import useDidMountEffect from "../../hooks/useDidMountEffect";
 
 const firebaseUrl = `https://events-app-92d92-default-rtdb.firebaseio.com/events.json`;
 
@@ -47,17 +47,17 @@ const EventsIndexPage = (props) => {
     // }
 
     // Method # 4: Using the getStaticProps function with client side fetching (useEffect)
-    useEffect(async ()  =>  {
+    useDidMountEffect(async () => {
         setIsLoading(true);
         try {
-            const events = await getAllEvents();
-            setEvents(events);
+            const allEvents = await getAllEvents();
+            setEvents(allEvents);
             setIsLoading(false);
         } catch (error) {
             setErrorState(error.message);
             setIsLoading(false);
         }
-    }, []);
+    }, [events]);
 
     let content;
     if (isLoading) {
