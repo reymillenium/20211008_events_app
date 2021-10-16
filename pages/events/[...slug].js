@@ -26,9 +26,9 @@ const FilteredEventsPage = () => {
                 <p>Invalid filter. Please adjust your values</p>
             </ErrorAlert>
         );
-    } else { // No results
+    } else { // No errors
         const filteredEvents = getFilteredEvents({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')});
-        if (filteredEvents.length === 0) {
+        if (filteredEvents.length === 0) { // No results
             filteredEventsContent = (
                 <EventContent>
                     <h1>No events were found</h1>

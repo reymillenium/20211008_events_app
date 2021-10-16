@@ -5,6 +5,7 @@ import EventsSearch from "../../components/events/EventsSearch/EventsSearch";
 import {getFeaturedEvents} from "../../lib/EventsAPI";
 import styles from "../../styles/FeaturedEventsIndex.module.css";
 import LoadingSpinner from "../../components/ui/LoadingSpinner/LoadingSpinner";
+import useDidMountEffect from "../../hooks/useDidMountEffect";
 
 const EventsFeaturedIndexPage = (props) => {
     const initialEventsState = props.events;
@@ -12,7 +13,7 @@ const EventsFeaturedIndexPage = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [errorState, setErrorState] = useState(null);
 
-    useEffect(async () => {
+    useDidMountEffect(async () => {
         setIsLoading(true);
         try {
             const events = await getFeaturedEvents();
@@ -22,7 +23,8 @@ const EventsFeaturedIndexPage = (props) => {
             setErrorState(error.message);
             setIsLoading(false);
         }
-    }, []);
+    }, [featuredEvents]);
+    // const featuredEvents = props.events;
 
     let content;
     if (isLoading) {
