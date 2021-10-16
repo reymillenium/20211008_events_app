@@ -3,7 +3,8 @@ import {useReducer, useCallback} from 'react';
 function httpReducer(state, action) {
     if (action.type === 'SEND') {
         return {
-            data: null,
+            ...state,
+            // data: null,
             error: null,
             status: 'pending',
         };
@@ -11,6 +12,7 @@ function httpReducer(state, action) {
 
     if (action.type === 'SUCCESS') {
         return {
+            ...state,
             data: action.responseData,
             error: null,
             status: 'completed',
@@ -19,6 +21,7 @@ function httpReducer(state, action) {
 
     if (action.type === 'ERROR') {
         return {
+            ...state,
             data: null,
             error: action.errorMessage,
             status: 'completed',
