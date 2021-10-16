@@ -1,41 +1,14 @@
-import {Fragment} from "react";
-import {useRouter} from "next/router";
-import {getEventById} from "../../../dummy-data";
-import ErrorAlert from "../../../components/ui/ErrorAlert/ErrorAlert";
-
-import EventSummary from "../../../components/events/EventDetail/EventSummary";
-import EventLogistics from "../../../components/events/EventDetail/EventLogistics";
-import EventContent from "../../../components/events/EventDetail/EventContent";
+import EventDetail from "../../../components/events/EventDetail/EventDetail";
 import {getSingleEvent, getAllEvents} from "../../../lib/EventsAPI";
 
 const EventsShowPage = (props) => {
-    const router = useRouter();
-    const pathname = router.pathname;
-    const {eventId} = router.query;
     const {event} = props;
-
-    // console.log('router.pathname = ', router.pathname);
-    // console.log('router.query = ', router.query);
-    // console.log('router.query.eventId = ', router.query.eventId);
 
     if (!event) {
         return <p>No event found!</p>;
     }
 
-    return (
-        <Fragment>
-            <EventSummary title={event.title}/>
-            <EventLogistics
-                date={event.date}
-                location={event.location}
-                image={event.image}
-                imageAlt={event.title}
-            />
-            <EventContent>
-                <p>{event.description}</p>
-            </EventContent>
-        </Fragment>
-    );
+    return <EventDetail event={event}/>;
 };
 
 export default EventsShowPage;

@@ -1,7 +1,7 @@
 import classes from './ResultsTitle.module.css';
 import {DUMMY_MONTHS_DATA, getFilteredEvents} from "../../dummy-data";
 import ErrorAlert from "../ui/ErrorAlert/ErrorAlert";
-import EventContent from "../events/EventDetail/EventContent";
+import EventContent from "../events/EventDetail/EventContent/EventContent";
 import EventItemsList from "../events/EventItemsList/EventItemsList";
 
 function ResultsTitle(props) {

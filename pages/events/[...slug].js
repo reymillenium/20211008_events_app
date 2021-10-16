@@ -2,7 +2,7 @@ import {useRouter} from "next/router";
 import {getFilteredEvents} from "../../dummy-data";
 import EventsSearch from "../../components/events/EventsSearch/EventsSearch";
 import EventItemsList from "../../components/events/EventItemsList/EventItemsList";
-import EventContent from "../../components/events/EventDetail/EventContent";
+import EventContent from "../../components/events/EventDetail/EventContent/EventContent";
 import ResultsTitle from "../../components/ResultsTitle/ResultsTitle";
 import ErrorAlert from "../../components/ui/ErrorAlert/ErrorAlert";
 

@@ -1,6 +1,6 @@
-import AddressIcon from "../../icons/address-icon";
-import DateIcon from "../../icons/date-icon";
-import LogisticsItem from './LogisticsItem';
+import AddressIcon from "../../../icons/address-icon";
+import DateIcon from "../../../icons/date-icon";
+import LogisticsItem from '../LogisticsItem/LogisticsItem';
 import classes from './EventLogistics.module.css';
 import Image from "next/image";
 
