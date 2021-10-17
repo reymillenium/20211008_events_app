@@ -1,15 +1,16 @@
+import styles from '../../../styles/EventsShowPage.module.css';
 import EventDetail from "../../../components/events/EventDetail/EventDetail";
 import {getSingleEvent, getAllEvents} from "../../../lib/EventsAPI";
-import EventContent from "../../../components/events/EventDetail/EventContent/EventContent";
+import LoadingSpinner from "../../../components/ui/LoadingSpinner/LoadingSpinner";
 
 const EventsShowPage = (props) => {
     const {event} = props;
 
     if (!event) {
         return (
-            <EventContent>
-                <h1>No event were found</h1>
-            </EventContent>
+            <div className={styles.centered}>
+                <LoadingSpinner/>
+            </div>
         );
     }
 
