@@ -52,12 +52,12 @@ export async function getStaticProps(context) {
     try {
         event = await getSingleEvent(eventId);
     } catch (error) {
-        return {notFound: true};
-        // return {
-        //     redirect: {
-        //         destination: '/404',
-        //     },
-        // };
+        // return {notFound: true};
+        return {
+            redirect: {
+                destination: '/404',
+            },
+        };
     }
 
     return {

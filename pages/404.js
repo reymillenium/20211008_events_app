@@ -9,7 +9,8 @@ const Error404 = () => {
     const router = useRouter();
 
     const goToHome = () => {
-        router.push('/');
+        router.push('/events').then(r => {
+        });
     };
 
     function drawVisor() {
