@@ -1,11 +1,16 @@
 import EventDetail from "../../../components/events/EventDetail/EventDetail";
 import {getSingleEvent, getAllEvents} from "../../../lib/EventsAPI";
+import EventContent from "../../../components/events/EventDetail/EventContent/EventContent";
 
 const EventsShowPage = (props) => {
     const {event} = props;
 
     if (!event) {
-        return <p>No event found!</p>;
+        return (
+            <EventContent>
+                <h1>No event were found</h1>
+            </EventContent>
+        );
     }
 
     return <EventDetail event={event}/>;
@@ -19,7 +24,7 @@ export async function getStaticPaths() {
         const events = await getAllEvents();
         paths = events.map(event => ({params: {eventId: event.id.toString()},}));
     } catch (error) {
-        console.log('error = ', error);
+        console.log('error.message = ', error.message);
     }
 
     return {
@@ -27,11 +32,11 @@ export async function getStaticPaths() {
         // If it fails pre-generating the dynamic age: With false (this is all the supported parameters) then it shows a 404 error -> 404 page
         //... and with true it then tries to generate a page for that meetupId, dynamically on the server for the incoming request,... How? by executing again the getStaticProps function?
         // Basically if he have hundred or thousands of dynamic pages, then we don't want to pre-generate all of them, but maybe just our most popular pages and then generate some of them and the rest gets generated dynamically on the server for the incoming request (whatever that means!)
-        // False -> these are all the meetupIds, so NO fallback. Just show a 404 error page is the request has parameters not included in 'paths'
+        // False -> these are all the meetupIds, so NO fallback. Just show a 404 error page if the request has parameters not included in 'paths'
         // True -> there might be other meetupIds, so YES,... perform a fallback. Next.js will pre-generate the page just in time, but Next.js won't wait until is pre-generated, so it needs a fallback block in the page component function
         // blocking -> Similar to true, but the user won't see anything until the page was pre-generated in the server and then... the finished page will be served. Next.js will wait until is pre-generated just in time. No need to add a fallback block in the page component function (if (!product) {...)
         // However, in a production server it always shows a 404 error?:
-        fallback: false, // With true or with 'blocking': It will generate that page on demand and thereafter cache it. It will pre-generate it when needed
+        fallback: true, // With true or with 'blocking': It will generate that page on demand and thereafter cache it. It will pre-generate it when needed
         // true vs blocking: With true it will immediately return an empty page and then pull down the generated content once that's done, so we need to handle that case that the page doesn't have the data yet
         // with blocking the user won't see anything until the page was pre-generated and the finished page will be served
     };
@@ -42,7 +47,18 @@ export async function getStaticPaths() {
 // but in this case is dynamic. There is no way to know which item will be clicked by the user in order to render it's details page, so Next.Js needs to pre-generate ALL OF THEM (all the possible URLs) in advance, during the build process.
 export async function getStaticProps(context) {
     const eventId = context.params.eventId;
-    const event = await getSingleEvent(eventId);
+    let event;
+
+    try {
+        event = await getSingleEvent(eventId);
+    } catch (error) {
+        return {notFound: true};
+        // return {
+        //     redirect: {
+        //         destination: '/404',
+        //     },
+        // };
+    }
 
     return {
         props: {
