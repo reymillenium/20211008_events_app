@@ -6,13 +6,13 @@ import LoadingSpinner from "../../../components/ui/LoadingSpinner/LoadingSpinner
 const EventsShowPage = (props) => {
     const {event} = props;
 
-    if (!event) {
-        return (
-            <div className={styles.centered}>
-                <LoadingSpinner/>
-            </div>
-        );
-    }
+    // if (!event) {
+    //     return (
+    //         <div className={styles.centered}>
+    //             <LoadingSpinner/>
+    //         </div>
+    //     );
+    // }
 
     return <EventDetail event={event}/>;
 };
@@ -37,7 +37,8 @@ export async function getStaticPaths() {
         // True -> there might be other meetupIds, so YES,... perform a fallback. Next.js will pre-generate the page just in time, but Next.js won't wait until is pre-generated, so it needs a fallback block in the page component function
         // blocking -> Similar to true, but the user won't see anything until the page was pre-generated in the server and then... the finished page will be served. Next.js will wait until is pre-generated just in time. No need to add a fallback block in the page component function (if (!product) {...)
         // However, in a production server it always shows a 404 error?:
-        fallback: true, // With true or with 'blocking': It will generate that page on demand and thereafter cache it. It will pre-generate it when needed
+        // fallback: true, // With true or with 'blocking': It will generate that page on demand and thereafter cache it. It will pre-generate it when needed
+        fallback: 'blocking', // It won't render the function component directly. It will until executing getStaticProps and until the data is ready. If there is an error, it won't show the function component directly, as it will allow to execute the redirection. This avoids the necessity of a LoadingSpinner
         // true vs blocking: With true it will immediately return an empty page and then pull down the generated content once that's done, so we need to handle that case that the page doesn't have the data yet
         // with blocking the user won't see anything until the page was pre-generated and the finished page will be served
     };
