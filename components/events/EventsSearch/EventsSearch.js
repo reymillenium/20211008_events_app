@@ -42,12 +42,12 @@ const EventsSearch = (props) => {
     useEffect(() => {
         setYearState(initialYear || initialStateValue);
         setMonthState(initialMonth || initialStateValue);
-        // if (initialIsFeatured) {
-        //     setIsFeaturedState(initialIsFeatured.toLowerCase() === 'true');
-        // } else {
-        //     setIsFeaturedState(initialIsFeaturedStateValue);
-        // }
-        setIsFeaturedState(initialIsFeatured || initialIsFeaturedStateValue);
+        if (initialIsFeatured) {
+            setIsFeaturedState(initialIsFeatured.toLowerCase() === 'true');
+        } else {
+            setIsFeaturedState(initialIsFeaturedStateValue);
+        }
+        // setIsFeaturedState(initialIsFeatured || initialIsFeaturedStateValue);
     }, [initialYear, initialMonth, initialIsFeatured, initialIsFeaturedStateValue]);
 
 

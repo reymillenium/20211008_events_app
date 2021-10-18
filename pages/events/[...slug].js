@@ -100,29 +100,29 @@ const FilteredEventsPage = (props) => {
     }
 
     // Variant # 3: Using only the incoming data from getServerSideProps:
-//     let filteredEventsContent;
-//     if (props.hasParamErrors) {
-//         console.log('props.hasParamErrors');
-//         filteredEventsContent = (
-//             <ErrorAlert>
-//                 <p>Invalid filter. Please adjust your values</p>
-//             </ErrorAlert>
-//         );
-//     } else if (props.hasFetchingErrors) {
-//         console.log('props.hasFetchingErrors');
-//         filteredEventsContent = <p className={'centered focused'}>{props.getFilteredEventsError.message}</p>;
-//     } else if (!props.events || props.events.length === 0) {
-//         console.log('No events');
-//         filteredEventsContent = (
-//             <EventContent>
-//                 <h1>No events were found</h1>
-//             </EventContent>
-//         );
-//     } else {
-//         console.log('All good');
-//         filteredEventsContent = <EventItemsList events={props.events}/>;
-//     }
-//
+    // let filteredEventsContent;
+    // if (props.hasParamErrors) {
+    //     console.log('props.hasParamErrors');
+    //     filteredEventsContent = (
+    //         <ErrorAlert>
+    //             <p>Invalid filter. Please adjust your values</p>
+    //         </ErrorAlert>
+    //     );
+    // } else if (props.hasFetchingErrors) {
+    //     console.log('props.hasFetchingErrors');
+    //     filteredEventsContent = <p className={'centered focused'}>{props.getFilteredEventsError.message}</p>;
+    // } else if (!props.events || props.events.length === 0) {
+    //     console.log('No events');
+    //     filteredEventsContent = (
+    //         <EventContent>
+    //             <h1>No events were found</h1>
+    //         </EventContent>
+    //     );
+    // } else {
+    //     console.log('All good');
+    //     filteredEventsContent = <EventItemsList events={props.events}/>;
+    // }
+
     return (
         <div>
             <ResultsTitle yearStr={yearStr} monthStr={monthStr} isFeaturedStr={isFeaturedStr}/>
