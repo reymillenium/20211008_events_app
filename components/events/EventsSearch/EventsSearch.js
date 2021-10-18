@@ -1,3 +1,4 @@
+import React from "react";
 import styles from './EventsSearch.module.css';
 import {useRouter} from "next/router";
 import generateRoutes from "../../../tools/generateRoutes";
@@ -41,11 +42,12 @@ const EventsSearch = (props) => {
     useEffect(() => {
         setYearState(initialYear || initialStateValue);
         setMonthState(initialMonth || initialStateValue);
-        if (initialIsFeatured) {
-            setIsFeaturedState(initialIsFeatured.toLowerCase() === 'true');
-        } else {
-            setIsFeaturedState(initialIsFeaturedStateValue);
-        }
+        // if (initialIsFeatured) {
+        //     setIsFeaturedState(initialIsFeatured.toLowerCase() === 'true');
+        // } else {
+        //     setIsFeaturedState(initialIsFeaturedStateValue);
+        // }
+        setIsFeaturedState(initialIsFeatured || initialIsFeaturedStateValue);
     }, [initialYear, initialMonth, initialIsFeatured, initialIsFeaturedStateValue]);
 
 

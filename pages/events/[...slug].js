@@ -65,17 +65,14 @@ const FilteredEventsPage = (props) => {
     const initialFilteredEventsState = props.events;
     console.log('initialFilteredEventsState.length = ', initialFilteredEventsState.length);
     const {sendRequest: getFilteredEventsRequest, status: getFilteredEventsStatus, data: filteredEvents, error: getFilteredEventsError} = useHttp(() => getFilteredEvents({year: yearStr, month: monthStr, isFeatured: isFeaturedStr.toLowerCase() === 'true'}), false, initialFilteredEventsState);
-
     useDidMountEffect(async () => {
         getFilteredEventsRequest({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')}).then(r => {
         });
     }, [yearStr, monthStr, isFeaturedStr]);
-
     const isValidYear = (yearStr === 'All' || (!isNaN(+yearStr)));
     const isValidMonth = (monthStr === 'All' || monthStr.match(/^\d+$/));
     const isValidIsFeatured = (isFeaturedStr === 'true' || isFeaturedStr === 'false');
     let filteredEventsContent;
-
     if (!isValidYear || !isValidMonth || !isValidIsFeatured) { // Validation failure: Errors in the incoming parameters
         filteredEventsContent = (
             <ErrorAlert>
@@ -102,6 +99,30 @@ const FilteredEventsPage = (props) => {
         }
     }
 
+    // Variant # 3: Using only the incoming data from getServerSideProps:
+//     let filteredEventsContent;
+//     if (props.hasParamErrors) {
+//         console.log('props.hasParamErrors');
+//         filteredEventsContent = (
+//             <ErrorAlert>
+//                 <p>Invalid filter. Please adjust your values</p>
+//             </ErrorAlert>
+//         );
+//     } else if (props.hasFetchingErrors) {
+//         console.log('props.hasFetchingErrors');
+//         filteredEventsContent = <p className={'centered focused'}>{props.getFilteredEventsError.message}</p>;
+//     } else if (!props.events || props.events.length === 0) {
+//         console.log('No events');
+//         filteredEventsContent = (
+//             <EventContent>
+//                 <h1>No events were found</h1>
+//             </EventContent>
+//         );
+//     } else {
+//         console.log('All good');
+//         filteredEventsContent = <EventItemsList events={props.events}/>;
+//     }
+//
     return (
         <div>
             <ResultsTitle yearStr={yearStr} monthStr={monthStr} isFeaturedStr={isFeaturedStr}/>
@@ -114,31 +135,30 @@ const FilteredEventsPage = (props) => {
 export async function getServerSideProps(context) {
     const slug = context.params.slug || [];
     const [yearStr, monthStr, isFeaturedStr] = slug;
-    let filteredEventsContent;
     const isValidYear = (yearStr === 'All' || (!isNaN(+yearStr)));
     const isValidMonth = (monthStr === 'All' || monthStr.match(/^\d+$/));
+    const isValidIsFeatured = (isFeaturedStr === 'true' || isFeaturedStr === 'false');
+    const filteredEvents = await getFilteredEvents({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')});
 
     // let filteredEvents;
-    // if (!isValidYear || !isValidMonth) { // Errors
-    //     // filteredEventsContent = (
-    //     //     <ErrorAlert>
-    //     //         <p>Invalid filter. Please adjust your values</p>
-    //     //     </ErrorAlert>
-    //     // );
-    // } else { // No errors
-    //     filteredEvents = await getFilteredEvents({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')});
-    //     if (filteredEvents.length === 0) { // No results
-    //         // filteredEventsContent = (
-    //         //     <EventContent>
-    //         //         <h1>No events were found</h1>
-    //         //     </EventContent>
-    //         // );
-    //     } else { // All good!
-    //         // filteredEventsContent = <EventItemsList events={filteredEvents}/>;
+    // if (!isValidYear || !isValidMonth || !isValidIsFeatured) {
+    //     return {
+    //         props: {
+    //             hasParamErrors: true
+    //         }
+    //     };
+    // } else {
+    //     try {
+    //         filteredEvents = await getFilteredEvents({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')});
+    //     } catch (Error) {
+    //         return {
+    //             props: {
+    //                 hasFetchingErrors: true,
+    //                 getFilteredEventsError: Error
+    //             }
+    //         };
     //     }
     // }
-
-    const filteredEvents = await getFilteredEvents({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')});
 
     return {
         props: {
