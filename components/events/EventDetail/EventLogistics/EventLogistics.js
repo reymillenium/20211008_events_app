@@ -25,6 +25,8 @@ function EventLogistics(props) {
                     width={'10rem'}
                     height={'10rem'}
                     layout='responsive'
+                    // priority={true}
+                    loading="eager"
                 />
             </div>
             <ul className={classes.list}>
