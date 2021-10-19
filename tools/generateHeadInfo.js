@@ -1,6 +1,6 @@
 const generateHeadInfo = (componentName, pageProps) => {
-    let title;
-    let description;
+    let title = 'Miami Events';
+    let description = 'A new way to manage our events';
 
     switch (componentName) {
         case 'EventsIndexPage':
