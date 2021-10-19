@@ -3,24 +3,29 @@ const generateHeadInfo = (componentName, pageProps) => {
     let description;
 
     switch (componentName) {
-        case 'EventsFeaturedIndexPage':
-            title = 'Featured Miami Events';
-            description = 'Browse a list of highly active events';
-            break;
-
         case 'EventsIndexPage':
             title = 'Miami Events';
             description = 'Browse a list of highly active events';
             break;
 
-        case 'EventNewPage':
+        case 'EventsFeaturedIndexPage':
+            title = 'Featured Miami Events';
+            description = 'Browse a list of highly active featured events';
+            break;
+
+        case 'EventsNewPage':
             title = 'Add a New Event';
             description = 'Add your own event and create amazing opportunities';
             break;
 
-        case 'EventShowPage':
+        case 'EventsShowPage':
             title = `${pageProps.event.title}`;
             description = `${pageProps.event.description}`;
+            break;
+
+        case 'FilteredEventsPage':
+            title = `Events - Special search`;
+            description = ``;
             break;
 
         case 'Error404':
@@ -30,7 +35,7 @@ const generateHeadInfo = (componentName, pageProps) => {
 
         default:
             title = 'Miami Events';
-            description = 'A sample Next.js Web App to manage some events';
+            description = 'A new way to manage our events';
             break;
     }
 
