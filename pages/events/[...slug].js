@@ -63,7 +63,7 @@ const FilteredEventsPage = (props) => {
 
     // Variant # 2: Using the Custom hooks: useHttp + useDidMountEffect
     const initialFilteredEventsState = props.events;
-    console.log('initialFilteredEventsState.length = ', initialFilteredEventsState.length);
+    // console.log('initialFilteredEventsState.length = ', initialFilteredEventsState.length);
     const {sendRequest: getFilteredEventsRequest, status: getFilteredEventsStatus, data: filteredEvents, error: getFilteredEventsError} = useHttp(() => getFilteredEvents({year: yearStr, month: monthStr, isFeatured: isFeaturedStr.toLowerCase() === 'true'}), false, initialFilteredEventsState);
     useDidMountEffect(async () => {
         getFilteredEventsRequest({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')}).then(r => {
@@ -72,56 +72,56 @@ const FilteredEventsPage = (props) => {
     const isValidYear = (yearStr === 'All' || (!isNaN(+yearStr)));
     const isValidMonth = (monthStr === 'All' || monthStr.match(/^\d+$/));
     const isValidIsFeatured = (isFeaturedStr === 'true' || isFeaturedStr === 'false');
-    let filteredEventsContent;
-    if (!isValidYear || !isValidMonth || !isValidIsFeatured) { // Validation failure: Errors in the incoming parameters
-        filteredEventsContent = (
-            <ErrorAlert>
-                <p>Invalid filter. Please adjust your values</p>
-            </ErrorAlert>
-        );
-    } else { // No Errors in the parameters
-        if (getFilteredEventsStatus === 'pending') { // Pending, usually the initial stage but not this time (is null, as startWithPending: false om the custom hook)
-            filteredEventsContent = (
-                <div className={styles.centered}>
-                    <LoadingSpinner/>
-                </div>
-            );
-        } else if (getFilteredEventsError) { // Fetching Errors
-            filteredEventsContent = <p className={'centered focused'}>{getFilteredEventsError}</p>;
-        } else if (getFilteredEventsStatus === 'completed' && (!filteredEvents || filteredEvents.length === 0)) { // All seams to be ok,... but no data was found
-            filteredEventsContent = (
-                <EventContent>
-                    <h1>No events were found</h1>
-                </EventContent>
-            );
-        } else { // All good!
-            filteredEventsContent = <EventItemsList events={initialFilteredEventsState || filteredEvents}/>;
-        }
-    }
-
-    // Variant # 3: Using only the incoming data from getServerSideProps:
     // let filteredEventsContent;
-    // if (props.hasParamErrors) {
-    //     console.log('props.hasParamErrors');
+    // if (!isValidYear || !isValidMonth || !isValidIsFeatured) { // Validation failure: Errors in the incoming parameters
     //     filteredEventsContent = (
     //         <ErrorAlert>
     //             <p>Invalid filter. Please adjust your values</p>
     //         </ErrorAlert>
     //     );
-    // } else if (props.hasFetchingErrors) {
-    //     console.log('props.hasFetchingErrors');
-    //     filteredEventsContent = <p className={'centered focused'}>{props.getFilteredEventsError.message}</p>;
-    // } else if (!props.events || props.events.length === 0) {
-    //     console.log('No events');
-    //     filteredEventsContent = (
-    //         <EventContent>
-    //             <h1>No events were found</h1>
-    //         </EventContent>
-    //     );
-    // } else {
-    //     console.log('All good');
-    //     filteredEventsContent = <EventItemsList events={props.events}/>;
+    // } else { // No Errors in the parameters
+    //     if (getFilteredEventsStatus === 'pending') { // Pending, usually the initial stage but not this time (is null, as startWithPending: false om the custom hook)
+    //         filteredEventsContent = (
+    //             <div className={styles.centered}>
+    //                 <LoadingSpinner/>
+    //             </div>
+    //         );
+    //     } else if (getFilteredEventsError) { // Fetching Errors
+    //         filteredEventsContent = <p className={'centered focused'}>{getFilteredEventsError}</p>;
+    //     } else if (getFilteredEventsStatus === 'completed' && (!filteredEvents || filteredEvents.length === 0)) { // All seams to be ok,... but no data was found
+    //         filteredEventsContent = (
+    //             <EventContent>
+    //                 <h1>No events were found</h1>
+    //             </EventContent>
+    //         );
+    //     } else { // All good!
+    //         filteredEventsContent = <EventItemsList events={initialFilteredEventsState || filteredEvents}/>;
+    //     }
     // }
+
+    // Variant # 3: Using only the incoming data from getServerSideProps:
+    let filteredEventsContent;
+    if (props.hasParamErrors) {
+        console.log('props.hasParamErrors');
+        filteredEventsContent = (
+            <ErrorAlert>
+                <p>Invalid filter. Please adjust your values</p>
+            </ErrorAlert>
+        );
+    } else if (props.hasFetchingErrors) {
+        console.log('props.hasFetchingErrors');
+        filteredEventsContent = <p className={'centered focused'}>{props.getFilteredEventsError.message}</p>;
+    } else if (!props.events || props.events.length === 0) {
+        console.log('No events');
+        filteredEventsContent = (
+            <EventContent>
+                <h1>No events were found</h1>
+            </EventContent>
+        );
+    } else {
+        console.log('All good');
+        filteredEventsContent = <EventItemsList events={props.events}/>;
+    }
 
     return (
         <div>
@@ -138,27 +138,27 @@ export async function getServerSideProps(context) {
     const isValidYear = (yearStr === 'All' || (!isNaN(+yearStr)));
     const isValidMonth = (monthStr === 'All' || monthStr.match(/^\d+$/));
     const isValidIsFeatured = (isFeaturedStr === 'true' || isFeaturedStr === 'false');
-    const filteredEvents = await getFilteredEvents({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')});
+    // const filteredEvents = await getFilteredEvents({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')});
 
-    // let filteredEvents;
-    // if (!isValidYear || !isValidMonth || !isValidIsFeatured) {
-    //     return {
-    //         props: {
-    //             hasParamErrors: true
-    //         }
-    //     };
-    // } else {
-    //     try {
-    //         filteredEvents = await getFilteredEvents({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')});
-    //     } catch (Error) {
-    //         return {
-    //             props: {
-    //                 hasFetchingErrors: true,
-    //                 getFilteredEventsError: Error
-    //             }
-    //         };
-    //     }
-    // }
+    let filteredEvents;
+    if (!isValidYear || !isValidMonth || !isValidIsFeatured) {
+        return {
+            props: {
+                hasParamErrors: true
+            }
+        };
+    } else {
+        try {
+            filteredEvents = await getFilteredEvents({year: yearStr, month: monthStr, isFeatured: (isFeaturedStr.toLowerCase() === 'true')});
+        } catch (Error) {
+            return {
+                props: {
+                    hasFetchingErrors: true,
+                    getFilteredEventsError: Error
+                }
+            };
+        }
+    }
 
     return {
         props: {
