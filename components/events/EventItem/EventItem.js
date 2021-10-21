@@ -21,7 +21,8 @@ const EventItem = (props) => {
         <Fragment>
             <li className={styles.item}>
                 {/*<img src={`/${image}`} alt={title}/>*/}
-                <Image src={`/${image}`} alt={title} width={300} height={224} objectFit={'cover'} layout={'intrinsic'}/>
+                {/*<Image src={`/${image}`} alt={title} width={300} height={224} objectFit={'cover'} layout={'intrinsic'}/>*/}
+                <Image src={`/${image}`} alt={title} width={250} height={160}/>
 
                 <div className={styles.content}>
                     <div>

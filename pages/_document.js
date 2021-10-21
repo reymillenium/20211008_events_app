@@ -13,7 +13,7 @@ class MyDocument extends Document {
     //         </Html>
     //     );
     // }
-    // Default structure
+    // Customized structure
     render() {
         return (
             <Html lang={'en'}>
