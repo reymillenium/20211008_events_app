@@ -1,5 +1,5 @@
+import styles from './NewCommentForm.module.css';
 import {useRef, useState} from 'react';
-import classes from './NewCommentForm.module.css';
 
 function NewCommentForm(props) {
     const [isInvalid, setIsInvalid] = useState(false);
@@ -36,18 +36,18 @@ function NewCommentForm(props) {
     }
 
     return (
-        <form className={classes.form}>
-            <div className={classes.row}>
-                <div className={classes.control}>
+        <form className={styles.form}>
+            <div className={styles.row}>
+                <div className={styles.control}>
                     <label htmlFor='email'>Your email</label>
                     <input type='email' id='email' ref={emailInputRef}/>
                 </div>
-                <div className={classes.control}>
+                <div className={styles.control}>
                     <label htmlFor='name'>Your name</label>
                     <input type='text' id='name' ref={nameInputRef}/>
                 </div>
             </div>
-            <div className={classes.control}>
+            <div className={styles.control}>
                 <label htmlFor='comment'>Your comment</label>
                 <textarea id='comment' rows='5' ref={commentInputRef}></textarea>
             </div>

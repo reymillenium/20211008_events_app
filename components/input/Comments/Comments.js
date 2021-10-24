@@ -1,8 +1,8 @@
+import styles from './Comments.module.css';
 import {useState} from 'react';
 
 import CommentList from '../CommentList/CommentList';
 import NewCommentForm from '../NewCommentForm/NewCommentForm';
-import styles from './Comments.module.css';
 
 function Comments(props) {
     const {eventId} = props;

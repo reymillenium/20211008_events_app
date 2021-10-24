@@ -1,8 +1,8 @@
-import classes from './EventContent.module.css';
+import styles from './EventContent.module.css';
 
 function EventContent(props) {
   return (
-    <section className={classes.content}>
+    <section className={styles.content}>
       {props.children}
     </section>
   );

@@ -6,6 +6,7 @@ import LoadingSpinner from "../../components/ui/LoadingSpinner/LoadingSpinner";
 import useHttp from "../../hooks/use-http";
 import styles from '../../styles/EventsIndex.module.css';
 import useDidMountEffect from "../../hooks/useDidMountEffect";
+import NewsletterRegistration from "../../components/input/NewsletterRegistration/NewsletterRegistration";
 
 const firebaseUrl = `https://events-app-92d92-default-rtdb.firebaseio.com/events.json`;
 
@@ -102,6 +103,7 @@ const EventsIndexPage = (props) => {
     return (
         <Fragment>
             <h1>Full List of Events</h1>
+            <NewsletterRegistration/>
             <EventsSearch events={events}/>
             {content}
             {/*<EventItemsList events={events}/>*/}

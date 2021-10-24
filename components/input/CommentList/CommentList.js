@@ -1,8 +1,8 @@
-import classes from './CommentList.module.css';
+import styles from './CommentList.module.css';
 
 function CommentList() {
     return (
-        <ul className={classes.comments}>
+        <ul className={styles.comments}>
             {/* Render list of comments - fetched from API */}
             <li>
                 <p>My comment is amazing!</p>

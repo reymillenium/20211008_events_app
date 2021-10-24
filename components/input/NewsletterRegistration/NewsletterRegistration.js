@@ -1,4 +1,4 @@
-import classes from './NewsletterRegistration.module.css';
+import styles from './NewsletterRegistration.module.css';
 
 function NewsletterRegistration() {
     function registrationHandler(event) {
@@ -10,10 +10,10 @@ function NewsletterRegistration() {
     }
 
     return (
-        <section className={classes.newsletter}>
+        <section className={styles.newsletter}>
             <h2>Sign up to stay updated!</h2>
             <form onSubmit={registrationHandler}>
-                <div className={classes.control}>
+                <div className={styles.control}>
                     <input
                         type='email'
                         id='email'
