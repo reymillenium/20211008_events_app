@@ -41,3 +41,17 @@
 .control input {
     flex: 1;
 }
+
+.ErrorText {
+    color: #b40e0e;
+}
+
+.invalid label {
+    color: #ca3e51;
+}
+
+.invalid input {
+    border-color: #aa0b20;
+    background-color: #ffeff1;
+    /*background-color: #fddddd;*/
+}

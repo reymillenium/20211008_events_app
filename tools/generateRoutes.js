@@ -18,8 +18,10 @@ const generateRoutes = () => {
     // const postsSlugLevel3Path = (slugIdLevel1, slugIdLevel2, slugIdLevel3) => `/posts/${slugIdLevel1}/${slugIdLevel2}/${slugIdLevel3}`;
     // // *** </Posts> ***
 
+    // *** <API General> ***
+    const apiNewsletterSignupPath = `api/newsletter_signup`;
+    // *** </API General> ***
 
-    // *** <Events> ***
     // Basic CRUD Get Routes:
     const eventsIndexPath = `/events`;
     const eventsNewPath = `/events/new`;
@@ -48,6 +50,10 @@ const generateRoutes = () => {
         //         destroyPath: meetupsApiDestroyPath,
         //     },
         // },
+
+        api: {
+            newsletterSignupPath: apiNewsletterSignupPath,
+        },
 
         events: {
             indexPath: eventsIndexPath,
