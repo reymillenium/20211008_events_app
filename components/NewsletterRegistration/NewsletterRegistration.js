@@ -1,8 +1,8 @@
 import styles from './NewsletterRegistration.module.css';
 import {useRef} from "react";
-import generateRoutes from "../../../tools/generateRoutes";
-import useInputReducer from "../../../hooks/use-input-reducer";
-import * as validators from '../../../tools/validators';
+import generateRoutes from "../../tools/generateRoutes";
+import useInputReducer from "../../hooks/use-input-reducer";
+import * as validators from '../../tools/validators';
 
 
 function NewsletterRegistration() {

@@ -6,7 +6,7 @@ import LoadingSpinner from "../../components/ui/LoadingSpinner/LoadingSpinner";
 import useHttp from "../../hooks/use-http";
 import styles from '../../styles/EventsIndex.module.css';
 import useDidMountEffect from "../../hooks/useDidMountEffect";
-import NewsletterRegistration from "../../components/Comments/NewsletterRegistration/NewsletterRegistration";
+import NewsletterRegistration from "../../components/NewsletterRegistration/NewsletterRegistration";
 
 const firebaseUrl = `https://events-app-92d92-default-rtdb.firebaseio.com/events.json`;
 
