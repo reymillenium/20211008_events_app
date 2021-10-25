@@ -76,19 +76,28 @@ function NewCommentForm(props) {
     const nameValidityClasses = `${styles.control} ${nameInputIsInvalid ? styles.invalid : ''}`;
     const textValidityClasses = `${styles.control} ${textInputIsInvalid ? styles.invalid : ''}`;
 
+    const preventWhiteSpaceOnKeyDown = (e) => {
+        if (e.key === " ") {
+            e.preventDefault();
+        }
+    }
+
     return (
         <form className={styles.form} onSubmit={formSubmitHandler}>
             <div className={styles.row}>
                 <div className={emailValidityClasses}>
-                    <label htmlFor='email'>Your email</label>
+                    <label htmlFor='commentEmail'>Your email</label>
                     <input
-                        type='email'
-                        id='email'
-                        name='email'
+                        type={"email"}
+                        id='commentEmail'
+                        name='commentEmail'
+                        required={true}
+                        autoFocus={true}
                         ref={emailInputRef}
                         value={emailState}
                         onChange={emailInputChangeHandler}
                         // onBlur={emailInputBlurHandler}
+                        onKeyDown={preventWhiteSpaceOnKeyDown}
                     />
                     {emailInputIsInvalid ? <p className={styles.ErrorText}>The Email must be valid.</p> : <p>&nbsp;</p>}
                 </div>
@@ -97,9 +106,11 @@ function NewCommentForm(props) {
                 <div className={nameValidityClasses}>
                     <label htmlFor='name'>Your name</label>
                     <input
-                        type='text'
+                        // type='text'
+                        type={"text"}
                         id='name'
                         name='name'
+                        required={true}
                         ref={nameInputRef}
                         value={nameState}
                         onChange={nameInputChangeHandler}
@@ -110,16 +121,17 @@ function NewCommentForm(props) {
             </div>
 
             <div className={textValidityClasses}>
-                <label htmlFor='comment'>Your comment</label>
+                <label htmlFor='text'>Your comment</label>
                 <textarea
-                    id='comment'
-                    name='comment'
+                    id='text'
+                    name='text'
                     rows='5'
                     ref={textInputRef}
                     value={textState}
                     onChange={textInputChangeHandler}
                     // onBlur={textInputBlurHandler}
                 />
+                {textInputIsInvalid ? <p className={styles.ErrorText}>The Comment must be valid.</p> : <p>&nbsp;</p>}
             </div>
 
             {/*{isInvalid && <p>Please enter a valid email address and comment!</p>}*/}
