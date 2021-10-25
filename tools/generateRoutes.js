@@ -40,7 +40,6 @@ const generateRoutes = () => {
     // *** <Comments> ***
     // Basic CRUD Get Routes:
     // const commentsIndexPath = `/comments`;
-    // const commentsPerEventIndexPath = eventId => `/comments/${eventId}`;
     // const commentsNewPath = `/comments/new`;
     // const commentsShowPath = commentId => `/comments/show/${commentId}`;
     // const commentsEditPath = commentId => `/comments/edit/${commentId}`;
@@ -48,6 +47,8 @@ const generateRoutes = () => {
     const commentsApiCreatePath = `/api/comments/create`;
     // const commentsApiUpdatePath = `/api/comments/update`;
     // const commentsApiDestroyPath = `/api/comments/destroy`;
+    // Other API Routes:
+    const commentsPerEventIndexPath = eventId => `/api/comments/${eventId}`;
     // Other Routes:
     // const commentsFeaturedIndexPath = `/comments/featured`;
     // const commentsSlugPath = (...slug) => `/comments` + slug.map(slugItem => `/${slugItem}`).join('');
@@ -72,6 +73,7 @@ const generateRoutes = () => {
             newsletterSignupPath: apiNewsletterSignupPath,
         },
 
+        // Events:
         events: {
             indexPath: eventsIndexPath,
             newPath: eventsNewPath,
@@ -86,10 +88,11 @@ const generateRoutes = () => {
             filteredPath: eventsSlugPath,
         },
 
+        // Comments:
         comments: {
-            // perEventIndexPath: commentsPerEventIndexPath,
             api: {
                 createPath: commentsApiCreatePath,
+                perEventIndexPath: commentsPerEventIndexPath,
             }
         },
     };

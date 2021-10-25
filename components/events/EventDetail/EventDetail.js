@@ -2,7 +2,7 @@ import {Fragment} from "react";
 import EventSummary from "./EventSummary/EventSummary";
 import EventLogistics from "./EventLogistics/EventLogistics";
 import EventContent from "./EventContent/EventContent";
-import Comments from "../../input/Comments/Comments";
+import Comments from "../../Comments/Comments/Comments";
 
 const EventDetail = (props) => {
     const {event} = props;

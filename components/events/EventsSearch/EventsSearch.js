@@ -113,7 +113,7 @@ const EventsSearch = (props) => {
 
                 <div className={styles.control}>
                     <label htmlFor="isFeatured">Featured</label>
-                    {/*<input*/}
+                    {/*<Comments*/}
                     {/*    type="checkbox"*/}
                     {/*    id="isFeatured"*/}
                     {/*    name="isFeatured"*/}
