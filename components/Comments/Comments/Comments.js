@@ -8,7 +8,7 @@ import NewCommentForm from '../NewCommentForm/NewCommentForm';
 function Comments(props) {
     const {eventId} = props;
     const routes = generateRoutes();
-    const commentCreateRoute = routes.comments.api.createPath;
+    const {createPath: commentCreateRoute, perEventIndexPath: perEventIndexRoute} = routes.comments.api;
 
     const [showComments, setShowComments] = useState(false);
 
@@ -31,13 +31,29 @@ function Comments(props) {
         // await router.replace(`${meetupsIndexPath}`);
     }
 
+    async function getCommentsPerEventHandler(eventId) {
+
+        // send data to API
+        const response = await fetch(`${perEventIndexRoute(eventId)}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const responseData = await response.json();
+        console.log('responseData = ', responseData);
+        // await router.replace(`${meetupsIndexPath}`);
+        return responseData;
+    }
+
     return (
         <section className={styles.comments}>
             <button onClick={toggleCommentsHandler}>
                 {showComments ? 'Hide' : 'Show'} Comments
             </button>
             {showComments && <NewCommentForm eventId={eventId} onAddComment={addCommentHandler}/>}
-            {showComments && <CommentList eventId={eventId}/>}
+            {showComments && <CommentList eventId={eventId} getCommentsPerEventHandler={getCommentsPerEventHandler}/>}
         </section>
     );
 }

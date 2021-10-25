@@ -49,9 +49,6 @@ const generateRoutes = () => {
     // const commentsApiDestroyPath = `/api/comments/destroy`;
     // Other API Routes:
     const commentsPerEventIndexPath = eventId => `/api/comments/${eventId}`;
-    // Other Routes:
-    // const commentsFeaturedIndexPath = `/comments/featured`;
-    // const commentsSlugPath = (...slug) => `/comments` + slug.map(slugItem => `/${slugItem}`).join('');
     // *** </Comments> ***
 
     return {
