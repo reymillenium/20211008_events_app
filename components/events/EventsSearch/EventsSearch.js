@@ -52,8 +52,6 @@ const EventsSearch = (props) => {
 
 
     useDidMountEffect(async () => {
-        console.log('selectIsFeaturedToggleHandler -> isFeaturedSelectRef.current.checked: ', isFeaturedSelectRef.current.checked);
-        console.log('selectIsFeaturedToggleHandler -> isFeaturedState: ', isFeaturedState);
         await router.replace(filteredPath(yearState, monthState, isFeaturedState));
     }, [yearState, monthState, isFeaturedState]);
 
@@ -74,8 +72,6 @@ const EventsSearch = (props) => {
 
     const selectIsFeaturedHandler = async (event) => {
         const isFeatured = event.target.checked;
-        console.log('selectIsFeaturedHandler -> event.target.checked: ', event.target.checked);
-        console.log('selectIsFeaturedHandler -> isFeaturedSelectRef.current.checked: ', isFeaturedSelectRef.current.checked);
         setIsFeaturedState(isFeatured);
     };
 

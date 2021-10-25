@@ -4,7 +4,6 @@ export default async function handler(request, response) {
     // response.status(200).json({name: 'John Doe'})
     const {method: requestMethod} = request;
     const { eventId } = request.query
-    console.log('handler -> eventId = ', eventId);
 
     if (requestMethod === 'GET') {
         try {
