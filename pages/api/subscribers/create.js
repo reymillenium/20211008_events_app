@@ -9,7 +9,7 @@ export default async function handler(request, response) {
         const email = incomingRequestData.email;
 
         if (!emailValidator(email)) {
-            response.status(422).json({message: 'Invalid email address'});
+            response.status(422).json({message: 'Invalid email address input'});
             return;
         }
 
