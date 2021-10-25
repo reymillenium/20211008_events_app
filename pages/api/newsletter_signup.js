@@ -1,10 +1,18 @@
 import {newsletterSignup} from "../../lib/EventsAPI";
+import {emailValidator} from "../../tools/validators";
 
 export default async function handler(request, response) {
-    // response.status(200).json({name: 'John Doe'})
-    const {method: requestMethod, body: incomingRequestData} = request;
+    const {method: requestMethod} = request;
 
     if (requestMethod === 'POST') {
+        const incomingRequestData = request.body;
+        const email = incomingRequestData.email;
+
+        if (!emailValidator(email)) {
+            response.status(422).json({message: 'Invalid email address'});
+            return;
+        }
+
         try {
             await newsletterSignup(incomingRequestData);
             response.status(201).json({message: 'Newsletter subscriber inserted!'});
