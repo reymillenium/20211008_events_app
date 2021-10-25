@@ -28,6 +28,8 @@ function Comments(props) {
                 'Content-Type': 'application/json'
             }
         });
+        const responseData = response.json();
+        console.log(responseData);
         setIsAddingState(false);
     }
 
