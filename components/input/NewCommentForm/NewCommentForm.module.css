@@ -40,3 +40,18 @@
 .form button {
     background-color: white;
 }
+
+.ErrorText {
+    color: #b40e0e;
+}
+
+.invalid label {
+    color: #ca3e51;
+}
+
+/*.invalid input ,*/
+.invalid input {
+    border-color: #aa0b20;
+    background-color: #ffeff1;
+    /*background-color: #fddddd;*/
+}

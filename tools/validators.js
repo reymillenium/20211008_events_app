@@ -5,7 +5,7 @@ export const nameValidator = (value) => {
 };
 
 export const emailValidator = (value) => {
-    return isNotEmpty(value) && isValidEmail(value);
+    return (isNotEmpty(value) && isValidEmail(value));
 };
 
 export const zipcodeValidator = (value) => {

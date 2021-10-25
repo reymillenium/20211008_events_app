@@ -14,7 +14,7 @@ function NewsletterRegistration() {
         setValueIsTouchedState: setEmailIsTouchedState,
         valueIsValidState: emailIsValidState, valueInputIsInvalid: emailInputIsInvalid,
         valueInputChangeHandler: emailInputChangeHandler,
-        valueInputBlurHandler: emailInputBlurHandler,
+        // valueInputBlurHandler: emailInputBlurHandler,
         resetValueInput: resetEmailInput,
     } = useInputReducer(validators.emailValidator);
 

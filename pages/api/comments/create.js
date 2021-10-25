@@ -1,4 +1,4 @@
-import {newsletterSignup} from "../../lib/EventsAPI";
+import {addComment} from "../../../lib/EventsAPI";
 
 export default async function handler(request, response) {
     // response.status(200).json({name: 'John Doe'})
@@ -6,8 +6,8 @@ export default async function handler(request, response) {
 
     if (requestMethod === 'POST') {
         try {
-            await newsletterSignup(incomingRequestData);
-            response.status(201).json({message: 'Newsletter subscriber inserted!'});
+            await addComment(incomingRequestData);
+            response.status(201).json({message: 'Comment inserted!'});
         } catch (error) {
             console.log('error = ', error);
         }

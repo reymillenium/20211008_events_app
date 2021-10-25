@@ -22,6 +22,7 @@ const generateRoutes = () => {
     const apiNewsletterSignupPath = `api/newsletter_signup`;
     // *** </API General> ***
 
+    // *** <Events> ***
     // Basic CRUD Get Routes:
     const eventsIndexPath = `/events`;
     const eventsNewPath = `/events/new`;
@@ -35,6 +36,22 @@ const generateRoutes = () => {
     const eventsFeaturedIndexPath = `/events/featured`;
     const eventsSlugPath = (...slug) => `/events` + slug.map(slugItem => `/${slugItem}`).join('');
     // *** </Events> ***
+
+    // *** <Comments> ***
+    // Basic CRUD Get Routes:
+    // const commentsIndexPath = `/comments`;
+    // const commentsPerEventIndexPath = eventId => `/comments/${eventId}`;
+    // const commentsNewPath = `/comments/new`;
+    // const commentsShowPath = commentId => `/comments/show/${commentId}`;
+    // const commentsEditPath = commentId => `/comments/edit/${commentId}`;
+    // Basic CRUD API Routes:
+    const commentsApiCreatePath = `/api/comments/create`;
+    // const commentsApiUpdatePath = `/api/comments/update`;
+    // const commentsApiDestroyPath = `/api/comments/destroy`;
+    // Other Routes:
+    // const commentsFeaturedIndexPath = `/comments/featured`;
+    // const commentsSlugPath = (...slug) => `/comments` + slug.map(slugItem => `/${slugItem}`).join('');
+    // *** </Comments> ***
 
     return {
         // meetups: {
@@ -67,6 +84,13 @@ const generateRoutes = () => {
             // },
             featuredIndexPath: eventsFeaturedIndexPath,
             filteredPath: eventsSlugPath,
+        },
+
+        comments: {
+            // perEventIndexPath: commentsPerEventIndexPath,
+            api: {
+                createPath: commentsApiCreatePath,
+            }
         },
     };
 };
