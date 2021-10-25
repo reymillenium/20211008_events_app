@@ -7,7 +7,7 @@ import * as validators from '../../tools/validators';
 
 function NewsletterRegistration() {
     const routes = generateRoutes();
-    const newsletterSignupRoute = routes.api.newsletterSignupPath;
+    const newsletterSignupRoute = routes.subscribers.api.createPath;
 
     const {
         valueState: emailState,
@@ -29,9 +29,8 @@ function NewsletterRegistration() {
                 'Content-Type': 'application/json'
             }
         });
-
-        // const responseData = await response.json();
-        // await router.replace(`${meetupsIndexPath}`);
+        const responseData = response.json();
+        console.log(responseData);
     };
 
     async function submitFormHandler(event) {

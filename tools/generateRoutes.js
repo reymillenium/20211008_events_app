@@ -20,10 +20,6 @@ const generateRoutes = () => {
     // const postsSlugLevel3Path = (slugIdLevel1, slugIdLevel2, slugIdLevel3) => `/posts/${slugIdLevel1}/${slugIdLevel2}/${slugIdLevel3}`;
     // // *** </Posts> ***
 
-    // *** <API General> ***
-    const apiNewsletterSignupPath = `api/newsletter_signup`;
-    // *** </API General> ***
-
     // *** <Events> ***
     // Basic CRUD Get Routes:
     const eventsIndexPath = `/events`;
@@ -38,6 +34,10 @@ const generateRoutes = () => {
     const eventsFeaturedIndexPath = `/events/featured`;
     const eventsSlugPath = (...slug) => `/events` + slug.map(slugItem => `/${slugItem}`).join('');
     // *** </Events> ***
+
+    // *** <Subscribers> ***
+    const subscribersApiCreatePath = `api/subscribers/create`;
+    // *** </Subscribers> ***
 
     // *** <Comments> ***
     // Basic CRUD Get Routes:
@@ -68,10 +68,6 @@ const generateRoutes = () => {
         //     },
         // },
 
-        api: {
-            newsletterSignupPath: apiNewsletterSignupPath,
-        },
-
         // Events:
         events: {
             indexPath: eventsIndexPath,
@@ -85,6 +81,13 @@ const generateRoutes = () => {
             // },
             featuredIndexPath: eventsFeaturedIndexPath,
             filteredPath: eventsSlugPath,
+        },
+
+        // Subscribers:
+        subscribers: {
+            api: {
+                createPath: subscribersApiCreatePath,
+            },
         },
 
         // Comments:

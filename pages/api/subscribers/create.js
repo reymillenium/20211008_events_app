@@ -1,5 +1,5 @@
-import {newsletterSignup} from "../../lib/EventsAPI";
-import {emailValidator} from "../../tools/validators";
+import {newsletterSignup} from "../../../lib/EventsAPI";
+import {emailValidator} from "../../../tools/validators";
 
 export default async function handler(request, response) {
     const {method: requestMethod} = request;
