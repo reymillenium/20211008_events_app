@@ -3,7 +3,6 @@ import {addComment} from "../../../lib/mongoDBApi";
 import {emailValidator, nameValidator} from "../../../tools/validators";
 
 export default async function handler(request, response) {
-    // response.status(200).json({name: 'John Doe'})
     const {method: requestMethod, body: incomingRequestData} = request;
     const {email, name, text} = incomingRequestData;
 
