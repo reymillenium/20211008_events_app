@@ -1,4 +1,4 @@
-import {newsletterSignup} from "../../../lib/firebaseRealtimeDBAPI";
+import {addSubscriber} from "../../../lib/firebaseRealtimeDBAPI";
 import {emailValidator} from "../../../tools/validators";
 
 export default async function handler(request, response) {
@@ -14,7 +14,7 @@ export default async function handler(request, response) {
         }
 
         try {
-            await newsletterSignup(incomingRequestData);
+            await addSubscriber(incomingRequestData);
             response.status(201).json({message: 'Newsletter subscriber inserted!'});
         } catch (error) {
             console.log('error = ', error);
