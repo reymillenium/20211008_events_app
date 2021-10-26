@@ -21,5 +21,7 @@ export default async function handler(request, response) {
             return;
         }
         response.status(201).json({comment: result, message: 'Comment inserted!'});
+    } else {
+        response.status(400).json({message: 'Bad request!'});
     }
 }

@@ -19,5 +19,7 @@ export default async function handler(request, response) {
             return;
         }
         response.status(201).json({message: 'Newsletter subscriber inserted!'});
+    } else {
+        response.status(400).json({message: 'Bad request!'});
     }
 }
