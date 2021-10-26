@@ -13,8 +13,8 @@ export default async function handler(request, response) {
 
     if (requestMethod === 'POST') {
         try {
-            await addComment(incomingRequestData);
-            response.status(201).json({message: 'Comment inserted!'});
+            const result = await addComment(incomingRequestData);
+            response.status(201).json({comment: result, message: 'Comment inserted!'});
         } catch (error) {
             console.log('error = ', error);
         }

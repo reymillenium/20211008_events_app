@@ -28,8 +28,8 @@ function Comments(props) {
                 'Content-Type': 'application/json'
             }
         });
-        const responseData = response.json();
-        console.log(responseData);
+        const responseData = await response.json();
+        console.log('Comments -> addCommentHandler -> responseData = ', responseData);
         setIsAddingState(false);
     }
 
