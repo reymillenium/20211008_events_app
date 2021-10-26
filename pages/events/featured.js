@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import {useRouter} from "next/router";
 import EventItemsList from "../../components/events/EventItemsList/EventItemsList";
 import EventsSearch from "../../components/events/EventsSearch/EventsSearch";
-import {getFeaturedEvents} from "../../lib/EventsAPI";
+import {getFeaturedEvents} from "../../lib/firebaseRealtimeDBAPI";
 import styles from "../../styles/FeaturedEventsIndex.module.css";
 import LoadingSpinner from "../../components/ui/LoadingSpinner/LoadingSpinner";
 import useDidMountEffect from "../../hooks/useDidMountEffect";

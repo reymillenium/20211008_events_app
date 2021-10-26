@@ -1,6 +1,6 @@
 import styles from '../../../styles/EventsShowPage.module.css';
 import EventDetail from "../../../components/events/EventDetail/EventDetail";
-import {getSingleEvent, getAllEvents} from "../../../lib/EventsAPI";
+import {getSingleEvent, getAllEvents} from "../../../lib/firebaseRealtimeDBAPI";
 import LoadingSpinner from "../../../components/ui/LoadingSpinner/LoadingSpinner";
 
 const EventsShowPage = (props) => {

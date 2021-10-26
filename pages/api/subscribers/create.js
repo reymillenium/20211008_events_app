@@ -1,4 +1,4 @@
-import {newsletterSignup} from "../../../lib/EventsAPI";
+import {newsletterSignup} from "../../../lib/firebaseRealtimeDBAPI";
 import {emailValidator} from "../../../tools/validators";
 
 export default async function handler(request, response) {

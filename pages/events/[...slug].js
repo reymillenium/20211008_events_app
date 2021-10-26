@@ -6,7 +6,7 @@ import EventItemsList from "../../components/events/EventItemsList/EventItemsLis
 import EventContent from "../../components/events/EventDetail/EventContent/EventContent";
 import ResultsTitle from "../../components/ResultsTitle/ResultsTitle";
 import ErrorAlert from "../../components/ui/ErrorAlert/ErrorAlert";
-import {getFilteredEvents} from "../../lib/EventsAPI";
+import {getFilteredEvents} from "../../lib/firebaseRealtimeDBAPI";
 import useDidMountEffect from "../../hooks/useDidMountEffect";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../../components/ui/LoadingSpinner/LoadingSpinner";

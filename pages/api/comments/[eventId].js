@@ -1,4 +1,4 @@
-import {getCommentsPerEvent} from "../../../lib/EventsAPI";
+import {getCommentsPerEvent} from "../../../lib/firebaseRealtimeDBAPI";
 
 export default async function handler(request, response) {
     // response.status(200).json({name: 'John Doe'})

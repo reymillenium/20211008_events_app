@@ -1,5 +1,5 @@
 import {Fragment, useState, useEffect} from "react";
-import {getAllEvents} from "../../lib/EventsAPI";
+import {getAllEvents} from "../../lib/firebaseRealtimeDBAPI";
 import EventItemsList from "../../components/events/EventItemsList/EventItemsList";
 import EventsSearch from "../../components/events/EventsSearch/EventsSearch";
 import LoadingSpinner from "../../components/ui/LoadingSpinner/LoadingSpinner";
