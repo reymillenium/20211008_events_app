@@ -12,11 +12,14 @@ export default async function handler(request, response) {
     }
 
     if (requestMethod === 'POST') {
+        let result;
         try {
-            const result = await addComment(incomingRequestData);
-            response.status(201).json({comment: result, message: 'Comment inserted!'});
+            result = await addComment(incomingRequestData);
         } catch (error) {
             console.log('error = ', error);
+            response.status(500).json({message: 'Inserting the comment failed'});
+            return;
         }
+        response.status(201).json({comment: result, message: 'Comment inserted!'});
     }
 }
