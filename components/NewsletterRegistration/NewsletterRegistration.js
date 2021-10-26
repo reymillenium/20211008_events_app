@@ -24,7 +24,7 @@ function NewsletterRegistration() {
     const onAddNewsletterSubscriberHandler = async (newsletterSubscriberData) => {
         const response = await fetch(`${newsletterSignupRoute}`, {
             method: 'POST',
-            body: JSON.stringify(newsletterSubscriberData),
+            body: JSON.stringify(newsletterSubscriberData), // stringify converts to Json string
             headers: {
                 'Content-Type': 'application/json'
             }
