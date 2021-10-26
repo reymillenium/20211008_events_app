@@ -1,7 +1,7 @@
-import {getCommentsPerEvent} from "../../../lib/firebaseRealtimeDBAPI";
+// import {getCommentsPerEvent} from "../../../lib/firebaseRealtimeDBAPI";
+import {getCommentsPerEvent} from "../../../lib/mongoDBApi";
 
 export default async function handler(request, response) {
-    // response.status(200).json({name: 'John Doe'})
     const {method: requestMethod} = request;
     const { eventId } = request.query
 

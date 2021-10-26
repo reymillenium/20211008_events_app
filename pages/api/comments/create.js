@@ -1,4 +1,5 @@
-import {addComment} from "../../../lib/firebaseRealtimeDBAPI";
+// import {addComment} from "../../../lib/firebaseRealtimeDBAPI";
+import {addComment} from "../../../lib/mongoDBApi";
 import {emailValidator, nameValidator} from "../../../tools/validators";
 
 export default async function handler(request, response) {
