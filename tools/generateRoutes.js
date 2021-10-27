@@ -1,25 +1,4 @@
-import {useCallback} from "react";
-
 const generateRoutes = () => {
-    // // *** <Meetups> ***
-    // const meetupsIndexPath = `/meetups`;
-    // const meetupsNewPath = `/meetups/new`;
-    // const meetupsShowPath = meetupId => `/meetups/show/${meetupId}`;
-    // const meetupsEditPath = meetupId => `/meetups/edit/${meetupId}`;
-    // // API Routes:
-    // const meetupsIndexApiPath = `/api/meetups`;
-    // const meetupsApiCreatePath = `/api/meetups/create`;
-    // const meetupsApiShowPath = meetupId => `/api/meetups/show/${meetupId}`;
-    // const meetupsApiUpdatePath = `/api/meetups/update`;
-    // const meetupsApiDestroyPath = `/api/meetups/destroy`;
-    // // *** </Meetups> ***
-
-    // // *** <Posts> ***
-    // const postsSlugLevel1Path = slugIdLevel1 => `/posts/${slugIdLevel1}`;
-    // const postsSlugLevel2Path = (slugIdLevel1, slugIdLevel2) => `/posts/${slugIdLevel1}/${slugIdLevel2}`;
-    // const postsSlugLevel3Path = (slugIdLevel1, slugIdLevel2, slugIdLevel3) => `/posts/${slugIdLevel1}/${slugIdLevel2}/${slugIdLevel3}`;
-    // // *** </Posts> ***
-
     // *** <Events> ***
     // Basic CRUD Get Routes:
     const eventsIndexPath = `/events`;
@@ -27,7 +6,7 @@ const generateRoutes = () => {
     const eventsShowPath = eventId => `/events/show/${eventId}`;
     const eventsEditPath = eventId => `/events/edit/${eventId}`;
     // Basic CRUD API Routes:
-    // const eventsApiCreatePath = `/api/events/create`;
+    const eventsApiCreatePath = `/api/events/create`;
     // const eventsApiUpdatePath = `/api/events/update`;
     // const eventsApiDestroyPath = `/api/events/destroy`;
     // Other Routes:
@@ -54,31 +33,17 @@ const generateRoutes = () => {
     // *** </Comments> ***
 
     return {
-        // meetups: {
-        //     indexPath: meetupsIndexPath,
-        //     newPath: meetupsNewPath,
-        //     showPath: meetupsShowPath,
-        //     editPath: meetupsEditPath,
-        //     api: {
-        //         indexPath: meetupsIndexApiPath,
-        //         createPath: meetupsApiCreatePath,
-        //         showPath: meetupsApiShowPath,
-        //         updatePath: meetupsApiUpdatePath,
-        //         destroyPath: meetupsApiDestroyPath,
-        //     },
-        // },
-
         // Events:
         events: {
             indexPath: eventsIndexPath,
             newPath: eventsNewPath,
             showPath: eventsShowPath,
             editPath: eventsEditPath,
-            // api: {
-            //     createPath: eventsApiCreatePath,
-            //     updatePath: eventsApiUpdatePath,
-            //     destroyPath: eventsApiDestroyPath,
-            // },
+            api: {
+                createPath: eventsApiCreatePath,
+                // updatePath: eventsApiUpdatePath,
+                // destroyPath: eventsApiDestroyPath,
+            },
             featuredIndexPath: eventsFeaturedIndexPath,
             filteredPath: eventsSlugPath,
         },

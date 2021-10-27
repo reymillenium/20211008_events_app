@@ -22,3 +22,7 @@ export function isOnlyNumbers(value) {
     const regexp = /^[0-9\b]+$/;
     return regexp.test(value);
 }
+
+export function isBoolean(value) {
+    return (value.toLowerCase() === 'true' || value.toLowerCase() === 'false');
+}
