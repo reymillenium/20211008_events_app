@@ -22,7 +22,7 @@ function Comments(props) {
     }
 
     async function addCommentHandler(commentData) {
-        // sends the data to API
+        // Performs a request to the API Route:
         setIsAddingState(true);
         showModification({title: 'PENDING!', message: 'Adding the comment', status: 'pending'});
         const response = await fetch(`${commentCreateRoute}`, {
@@ -33,12 +33,13 @@ function Comments(props) {
             }
         });
         const responseData = await response.json();
+        const {message} = responseData;
         // console.log('Comments -> addCommentHandler -> responseData = ', responseData);
         await setIsAddingState(false);
 
         if (!response.ok) {
             setTimeout(function () {
-                showModification({title: 'ERROR!', message: 'Errors adding the comment', status: 'error'});
+                showModification({title: 'OOPS!', message: message, status: 'error'});
                 setTimeout(function () {
                     hideModification();
                 }, 1500);
@@ -46,21 +47,17 @@ function Comments(props) {
             return;
         }
 
+        const {name} = responseData;
         setTimeout(function () {
-            showModification({title: 'SUCCESS!', message: 'Success adding the comment', status: 'success'});
+            showModification({title: `SUCCESS ${name}!`, message: message, status: 'success'});
             setTimeout(function () {
                 hideModification();
             }, 1500);
         }, 500);
-
-        // showModification({title: 'SUCCESS!', message: 'Success adding the comment', status: 'success'});
-        // setTimeout(function () {
-        //     hideModification();
-        // }, 1500);
     }
 
     const getCommentsPerEventHandler = useCallback(async (eventId) => {
-        // send data to API
+        // Performs a request to the API Route:
         const response = await fetch(`${perEventIndexRoute(eventId)}`);
         const responseData = await response.json();
         return responseData.comments;
@@ -70,7 +67,7 @@ function Comments(props) {
         getCommentsPerEventHandler(eventId).then(response => {
             setCommentsState(response);
         });
-    }, [getCommentsPerEventHandler, eventId, isAddingState])
+    }, [getCommentsPerEventHandler, eventId, showComments, isAddingState])
 
     return (
         <section className={styles.comments}>

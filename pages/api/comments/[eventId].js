@@ -17,11 +17,11 @@ export default async function handler(request, response) {
             commentsPerEvent = await getCommentsPerEvent(eventId);
         } catch (error) {
             console.log('error = ', error);
-            response.status(500).json({message: 'Fetching the comments per event failed'});
+            response.status(500).json({comments: [], message: 'Fetching the comments per event failed'});
             return;
         }
-        response.status(200).json({comments: commentsPerEvent});
+        response.status(200).json({comments: commentsPerEvent, message: 'Comments per event successfully fetched!'});
     } else {
-        response.status(400).json({message: 'Bad request!'});
+        response.status(400).json({comments: [], message: 'Bad request!'});
     }
 }
