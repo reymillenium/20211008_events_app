@@ -24,7 +24,7 @@ function Comments(props) {
     async function addCommentHandler(commentData) {
         // sends the data to API
         setIsAddingState(true);
-        showModification({title: 'In course', message: 'Adding the comment', status: 'pending'});
+        showModification({title: 'PENDING!', message: 'Adding the comment', status: 'pending'});
         const response = await fetch(`${commentCreateRoute}`, {
             method: 'POST',
             body: JSON.stringify(commentData),
@@ -33,11 +33,30 @@ function Comments(props) {
             }
         });
         const responseData = await response.json();
-        console.log('Comments -> addCommentHandler -> responseData = ', responseData);
-        setIsAddingState(false);
-        // showModification({title: 'In course', message: 'Adding the comment', status: 'pending'});
-        hideModification();
+        // console.log('Comments -> addCommentHandler -> responseData = ', responseData);
+        await setIsAddingState(false);
 
+        if (!response.ok) {
+            setTimeout(function () {
+                showModification({title: 'ERROR!', message: 'Errors adding the comment', status: 'error'});
+                setTimeout(function () {
+                    hideModification();
+                }, 1500);
+            }, 500);
+            return;
+        }
+
+        setTimeout(function () {
+            showModification({title: 'SUCCESS!', message: 'Success adding the comment', status: 'success'});
+            setTimeout(function () {
+                hideModification();
+            }, 1500);
+        }, 500);
+
+        // showModification({title: 'SUCCESS!', message: 'Success adding the comment', status: 'success'});
+        // setTimeout(function () {
+        //     hideModification();
+        // }, 1500);
     }
 
     const getCommentsPerEventHandler = useCallback(async (eventId) => {

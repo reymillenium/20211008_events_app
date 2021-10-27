@@ -1,7 +1,6 @@
 import '../styles/globals.css'
 import Layout from "../components/Layout/Layout";
 import generateHeadInfo from "../tools/generateHeadInfo";
-import Notification from "../components/ui/Notification/Notification";
 import NotificationContextProvider from "../store/notificationContext";
 
 // Fontawesome:
@@ -27,7 +26,6 @@ function MyApp({Component, pageProps}) {
             >
                 <Component {...pageProps} />
             </Layout>
-            {/*<Notification title={''} message={''} status={''}/>*/}
         </NotificationContextProvider>
     );
 }

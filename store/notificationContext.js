@@ -1,9 +1,7 @@
 import {createContext, useState} from "react";
 
-const notificationInitialState = {title: '', message: '', status: ''};
 const initialContext = {
-    // notification: null, // {title, message, status}
-    notification: notificationInitialState,
+    notification: null, // {title, message, status}
     showModification: (notificationData) => {
     },
     hideModification: () => {
@@ -13,14 +11,14 @@ const initialContext = {
 export const NotificationContext = createContext(initialContext);
 
 const NotificationContextProvider = (props) => {
-    const [activeNotificationState, setActiveNotificationState] = useState(notificationInitialState);
+    const [activeNotificationState, setActiveNotificationState] = useState();
 
     const showModification = (notificationData) => {
         setActiveNotificationState(notificationData);
     };
 
     const hideModification = () => {
-        setActiveNotificationState(notificationInitialState);
+        setActiveNotificationState(null);
     };
 
     const notificationContextValue = {
