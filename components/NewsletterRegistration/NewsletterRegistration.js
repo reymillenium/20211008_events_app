@@ -29,7 +29,7 @@ function NewsletterRegistration() {
                 'Content-Type': 'application/json'
             }
         });
-        const responseData = response.json();
+        const responseData = await response.json();
         console.log(responseData);
     };
 

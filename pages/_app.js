@@ -1,12 +1,15 @@
 import '../styles/globals.css'
 import Layout from "../components/Layout/Layout";
 import generateHeadInfo from "../tools/generateHeadInfo";
+import Notification from "../components/ui/Notification/Notification";
+import NotificationContextProvider from "../store/notificationContext";
 
 // Fontawesome:
-import { config, library } from '@fortawesome/fontawesome-svg-core';
+import {config, library} from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import {fab} from "@fortawesome/free-brands-svg-icons";
 import '@fortawesome/fontawesome-free/css/all.css';
+
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 library.add(fab);
 
@@ -17,12 +20,15 @@ function MyApp({Component, pageProps}) {
     const headInfo = generateHeadInfo(Component.name, pageProps);
 
     return (
-        <Layout
-            hideNavigation={Component.name === 'Error404'}
-            headInfo={headInfo}
-        >
-            <Component {...pageProps} />
-        </Layout>
+        <NotificationContextProvider>
+            <Layout
+                hideNavigation={Component.name === 'Error404'}
+                headInfo={headInfo}
+            >
+                <Component {...pageProps} />
+            </Layout>
+            {/*<Notification title={''} message={''} status={''}/>*/}
+        </NotificationContextProvider>
     );
 }
 
