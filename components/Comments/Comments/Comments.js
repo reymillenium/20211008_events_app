@@ -38,22 +38,12 @@ function Comments(props) {
         await setIsAddingState(false);
 
         if (!response.ok) {
-            setTimeout(function () {
-                showNotification({title: 'OOPS!', message: message, status: 'error'});
-                setTimeout(function () {
-                    hideNotification();
-                }, 2500);
-            }, 500);
+            showNotification({title: 'OOPS!', message: message, status: 'error'});
             return;
         }
 
         const {name} = responseData.comment;
-        setTimeout(function () {
-            showNotification({title: `Success ${name}!`, message: message, status: 'success'});
-            setTimeout(function () {
-                hideNotification();
-            }, 2500);
-        }, 500);
+        showNotification({title: `Success ${name}!`, message: message, status: 'success'});
     }
 
     const getCommentsPerEventHandler = useCallback(async (eventId) => {

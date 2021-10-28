@@ -38,21 +38,11 @@ function NewsletterRegistration() {
         const {message} = responseData;
 
         if (!response.ok) {
-            setTimeout(function () {
-                showNotification({title: 'Error!', message: message || 'Something went wrong!', status: 'error'});
-                setTimeout(function () {
-                    hideNotification();
-                }, 2500);
-            }, 500);
+            showNotification({title: 'Error!', message: message || 'Something went wrong!', status: 'error'});
             return;
         }
 
-        setTimeout(function () {
-            showNotification({title: `Success!`, message: message, status: 'success'});
-            setTimeout(function () {
-                hideNotification();
-            }, 2500);
-        }, 500);
+        showNotification({title: `Success!`, message: message, status: 'success'});
     };
 
     async function submitFormHandler(event) {
