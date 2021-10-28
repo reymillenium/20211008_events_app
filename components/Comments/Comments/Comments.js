@@ -47,9 +47,9 @@ function Comments(props) {
             return;
         }
 
-        const {name} = responseData;
+        const {name} = responseData.comment;
         setTimeout(function () {
-            showNotification({title: `SUCCESS ${name}!`, message: message, status: 'success'});
+            showNotification({title: `Success ${name}!`, message: message, status: 'success'});
             setTimeout(function () {
                 hideNotification();
             }, 1500);

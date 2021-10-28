@@ -25,7 +25,7 @@ function NewsletterRegistration() {
     const emailRef = useRef();
 
     const onAddNewsletterSubscriberHandler = async (newsletterSubscriberData) => {
-        showNotification({title: 'PENDING!', message: 'Adding the subscriber', status: 'pending'});
+        showNotification({title: 'Signing up!', message: 'Adding the subscriber', status: 'pending'});
         const response = await fetch(`${newsletterSignupRoute}`, {
             method: 'POST',
             body: JSON.stringify(newsletterSubscriberData), // stringify converts to Json string
@@ -39,7 +39,7 @@ function NewsletterRegistration() {
 
         if (!response.ok) {
             setTimeout(function () {
-                showNotification({title: 'OOPS!', message: message, status: 'error'});
+                showNotification({title: 'Error!', message: message || 'Something went wrong!', status: 'error'});
                 setTimeout(function () {
                     hideNotification();
                 }, 1500);
@@ -47,9 +47,8 @@ function NewsletterRegistration() {
             return;
         }
 
-        const {name} = responseData;
         setTimeout(function () {
-            showNotification({title: `SUCCESS ${name}!`, message: message, status: 'success'});
+            showNotification({title: `Success!`, message: message, status: 'success'});
             setTimeout(function () {
                 hideNotification();
             }, 1500);
