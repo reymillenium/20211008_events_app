@@ -24,7 +24,7 @@ function Comments(props) {
     async function addCommentHandler(commentData) {
         // Performs a request to the API Route:
         setIsAddingState(true);
-        showNotification({title: 'PENDING!', message: 'Adding the comment', status: 'pending'});
+        showNotification({title: 'Storing!', message: 'Adding the comment...', status: 'pending'});
         const response = await fetch(`${commentCreateRoute}`, {
             method: 'POST',
             body: JSON.stringify(commentData),
@@ -42,7 +42,7 @@ function Comments(props) {
                 showNotification({title: 'OOPS!', message: message, status: 'error'});
                 setTimeout(function () {
                     hideNotification();
-                }, 1500);
+                }, 2500);
             }, 500);
             return;
         }
@@ -52,7 +52,7 @@ function Comments(props) {
             showNotification({title: `Success ${name}!`, message: message, status: 'success'});
             setTimeout(function () {
                 hideNotification();
-            }, 1500);
+            }, 2500);
         }, 500);
     }
 

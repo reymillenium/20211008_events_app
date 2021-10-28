@@ -9,7 +9,7 @@ import {useContext} from "react";
 function Layout(props) {
     const hideNavigation = props.hideNavigation || false;
     const navigation = (hideNavigation ? null : <MainNavigation/>);
-    const {notification} = useContext(NotificationContext);
+    const {notification, hideNotification} = useContext(NotificationContext);
 
     return (
         <>
@@ -17,7 +17,7 @@ function Layout(props) {
             <div>
                 {navigation}
                 <main className={styles.main}>{props.children}</main>
-                {notification && <Notification {...notification} />}
+                {notification && <Notification {...notification} hideNotification={hideNotification}/>}
                 <FooterClassic/>
             </div>
         </>
