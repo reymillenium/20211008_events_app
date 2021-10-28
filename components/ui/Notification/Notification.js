@@ -26,7 +26,7 @@ function Notification(props) {
     const activeClasses = `${classes.notification} ${statusClasses}`;
 
     return (
-        <div className={activeClasses} onClick={notificationContext.hideModification}>
+        <div className={activeClasses} onClick={notificationContext.hideNotification}>
             <h2>{title}</h2>
             <p>{message}</p>
         </div>

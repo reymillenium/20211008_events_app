@@ -1,13 +1,16 @@
 import styles from './NewsletterRegistration.module.css';
-import {useRef} from "react";
+import {useContext, useRef} from "react";
 import generateRoutes from "../../tools/generateRoutes";
 import useInputReducer from "../../hooks/use-input-reducer";
 import * as validators from '../../tools/validators';
+import {NotificationContext} from "../../store/notificationContext";
 
 
 function NewsletterRegistration() {
     const routes = generateRoutes();
     const newsletterSignupRoute = routes.subscribers.api.createPath;
+    const notificationContext = useContext(NotificationContext);
+    const {showNotification, hideNotification} = notificationContext;
 
     const {
         valueState: emailState,
@@ -22,6 +25,7 @@ function NewsletterRegistration() {
     const emailRef = useRef();
 
     const onAddNewsletterSubscriberHandler = async (newsletterSubscriberData) => {
+        showNotification({title: 'PENDING!', message: 'Adding the subscriber', status: 'pending'});
         const response = await fetch(`${newsletterSignupRoute}`, {
             method: 'POST',
             body: JSON.stringify(newsletterSubscriberData), // stringify converts to Json string
@@ -30,7 +34,26 @@ function NewsletterRegistration() {
             }
         });
         const responseData = await response.json();
-        console.log(responseData);
+        // console.log(responseData);
+        const {message} = responseData;
+
+        if (!response.ok) {
+            setTimeout(function () {
+                showNotification({title: 'OOPS!', message: message, status: 'error'});
+                setTimeout(function () {
+                    hideNotification();
+                }, 1500);
+            }, 500);
+            return;
+        }
+
+        const {name} = responseData;
+        setTimeout(function () {
+            showNotification({title: `SUCCESS ${name}!`, message: message, status: 'success'});
+            setTimeout(function () {
+                hideNotification();
+            }, 1500);
+        }, 500);
     };
 
     async function submitFormHandler(event) {

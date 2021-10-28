@@ -11,7 +11,7 @@ function Comments(props) {
     const routes = generateRoutes();
     const {createPath: commentCreateRoute, perEventIndexPath: perEventIndexRoute} = routes.comments.api;
     const notificationContext = useContext(NotificationContext);
-    const {showModification, hideModification} = notificationContext;
+    const {showNotification, hideNotification} = notificationContext;
 
     const [showComments, setShowComments] = useState(false);
     const [commentsState, setCommentsState] = useState([]);
@@ -24,7 +24,7 @@ function Comments(props) {
     async function addCommentHandler(commentData) {
         // Performs a request to the API Route:
         setIsAddingState(true);
-        showModification({title: 'PENDING!', message: 'Adding the comment', status: 'pending'});
+        showNotification({title: 'PENDING!', message: 'Adding the comment', status: 'pending'});
         const response = await fetch(`${commentCreateRoute}`, {
             method: 'POST',
             body: JSON.stringify(commentData),
@@ -39,9 +39,9 @@ function Comments(props) {
 
         if (!response.ok) {
             setTimeout(function () {
-                showModification({title: 'OOPS!', message: message, status: 'error'});
+                showNotification({title: 'OOPS!', message: message, status: 'error'});
                 setTimeout(function () {
-                    hideModification();
+                    hideNotification();
                 }, 1500);
             }, 500);
             return;
@@ -49,9 +49,9 @@ function Comments(props) {
 
         const {name} = responseData;
         setTimeout(function () {
-            showModification({title: `SUCCESS ${name}!`, message: message, status: 'success'});
+            showNotification({title: `SUCCESS ${name}!`, message: message, status: 'success'});
             setTimeout(function () {
-                hideModification();
+                hideNotification();
             }, 1500);
         }, 500);
     }
