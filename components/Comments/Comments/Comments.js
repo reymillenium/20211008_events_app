@@ -1,12 +1,11 @@
 import styles from './Comments.module.css';
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import generateRoutes from "../../../tools/generateRoutes";
-import Example from "../../ui/WaveLoading/WaveLoading";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 import CommentList from '../CommentList/CommentList';
 import NewCommentForm from '../NewCommentForm/NewCommentForm';
 import {NotificationContext} from "../../../store/notificationContext";
-import ReactLoading from 'react-loading';
 
 function Comments(props) {
     const {eventId} = props;
@@ -72,12 +71,8 @@ function Comments(props) {
                 {showComments ? 'Hide' : 'Show'} Comments
             </button>
             {showComments && <NewCommentForm eventId={eventId} onAddComment={addCommentHandler}/>}
-            {/*<Example type={'bars'} color={'black'}/>*/}
             <div className={styles.centered}>
-
-                {showComments && isLoadingCommentsState && <ReactLoading type={'bars'} color={'black'} height={10} width={40}/>}
-                {/*{showComments && isLoadingCommentsState && <ReactLoading type={'spinningBubbles'} color={'black'} height={10} width={40}/>}*/}
-                {/*{showComments && isLoadingCommentsState && <ReactLoading type={'spokes'} color={'black'} height={10} width={40}/>}*/}
+                {showComments && isLoadingCommentsState && <LoadingIndicator type={'bars'}/>}
             </div>
             {showComments && !isLoadingCommentsState && <CommentList comments={commentsState}/>}
         </section>
