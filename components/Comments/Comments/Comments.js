@@ -11,13 +11,14 @@ function Comments(props) {
     const {eventId} = props;
     const routes = generateRoutes();
     const {createPath: commentCreateRoute, perEventIndexPath: perEventIndexRoute} = routes.comments.api;
+    const commentsPerEventIndexRoute = perEventIndexRoute(eventId);
     const notificationContext = useContext(NotificationContext);
-    const {showNotification, hideNotification} = notificationContext;
+    const {showNotification} = notificationContext;
 
     const [showComments, setShowComments] = useState(false);
     const [commentsState, setCommentsState] = useState([]);
     const [isAddingState, setIsAddingState] = useState(false);
-    const [isLoadingCommentsState, setIsLoadingComments] = useState(false);
+    const [isFetchingComments, setIsFetchingComments] = useState(false);
 
     function toggleCommentsHandler() {
         setShowComments((prevStatus) => !prevStatus);
@@ -40,7 +41,7 @@ function Comments(props) {
         await setIsAddingState(false);
 
         if (!response.ok) {
-            showNotification({title: 'OOPS!', message: message, status: 'error'});
+            showNotification({title: 'Error!', message: message, status: 'error'});
             return;
         }
 
@@ -50,12 +51,12 @@ function Comments(props) {
 
     const getCommentsPerEventHandler = useCallback(async (eventId) => {
         // Performs a request to the API Route:
-        setIsLoadingComments(true);
-        const response = await fetch(`${perEventIndexRoute(eventId)}`);
+        setIsFetchingComments(true);
+        const response = await fetch(`${commentsPerEventIndexRoute}`);
         const responseData = await response.json();
-        setIsLoadingComments(false);
+        setIsFetchingComments(false);
         return responseData.comments;
-    }, [])
+    }, [commentsPerEventIndexRoute])
 
     useEffect(() => {
         if (showComments) {
@@ -72,9 +73,9 @@ function Comments(props) {
             </button>
             {showComments && <NewCommentForm eventId={eventId} onAddComment={addCommentHandler}/>}
             <div className={styles.centered}>
-                {showComments && isLoadingCommentsState && <LoadingIndicator type={'bars'}/>}
+                {showComments && isFetchingComments && <LoadingIndicator type={'bars'}/>}
             </div>
-            {showComments && !isLoadingCommentsState && <CommentList comments={commentsState}/>}
+            {showComments && !isFetchingComments && <CommentList comments={commentsState}/>}
         </section>
     );
 }

@@ -10,7 +10,7 @@ function NewsletterRegistration() {
     const routes = generateRoutes();
     const newsletterSignupRoute = routes.subscribers.api.createPath;
     const notificationContext = useContext(NotificationContext);
-    const {showNotification, hideNotification} = notificationContext;
+    const {showNotification} = notificationContext;
 
     const {
         valueState: emailState,
