@@ -1,10 +1,12 @@
 import styles from './Comments.module.css';
-import {useCallback, useContext, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import generateRoutes from "../../../tools/generateRoutes";
+import Example from "../../ui/WaveLoading/WaveLoading";
 
 import CommentList from '../CommentList/CommentList';
 import NewCommentForm from '../NewCommentForm/NewCommentForm';
 import {NotificationContext} from "../../../store/notificationContext";
+import ReactLoading from 'react-loading';
 
 function Comments(props) {
     const {eventId} = props;
@@ -16,6 +18,7 @@ function Comments(props) {
     const [showComments, setShowComments] = useState(false);
     const [commentsState, setCommentsState] = useState([]);
     const [isAddingState, setIsAddingState] = useState(false);
+    const [isLoadingCommentsState, setIsLoadingComments] = useState(false);
 
     function toggleCommentsHandler() {
         setShowComments((prevStatus) => !prevStatus);
@@ -48,15 +51,19 @@ function Comments(props) {
 
     const getCommentsPerEventHandler = useCallback(async (eventId) => {
         // Performs a request to the API Route:
+        setIsLoadingComments(true);
         const response = await fetch(`${perEventIndexRoute(eventId)}`);
         const responseData = await response.json();
+        setIsLoadingComments(false);
         return responseData.comments;
     }, [])
 
     useEffect(() => {
-        getCommentsPerEventHandler(eventId).then(response => {
-            setCommentsState(response);
-        });
+        if (showComments) {
+            getCommentsPerEventHandler(eventId).then(response => {
+                setCommentsState(response);
+            });
+        }
     }, [getCommentsPerEventHandler, eventId, showComments, isAddingState])
 
     return (
@@ -65,7 +72,14 @@ function Comments(props) {
                 {showComments ? 'Hide' : 'Show'} Comments
             </button>
             {showComments && <NewCommentForm eventId={eventId} onAddComment={addCommentHandler}/>}
-            {showComments && <CommentList comments={commentsState}/>}
+            {/*<Example type={'bars'} color={'black'}/>*/}
+            <div className={styles.centered}>
+
+                {showComments && isLoadingCommentsState && <ReactLoading type={'bars'} color={'black'} height={10} width={40}/>}
+                {/*{showComments && isLoadingCommentsState && <ReactLoading type={'spinningBubbles'} color={'black'} height={10} width={40}/>}*/}
+                {/*{showComments && isLoadingCommentsState && <ReactLoading type={'spokes'} color={'black'} height={10} width={40}/>}*/}
+            </div>
+            {showComments && !isLoadingCommentsState && <CommentList comments={commentsState}/>}
         </section>
     );
 }
