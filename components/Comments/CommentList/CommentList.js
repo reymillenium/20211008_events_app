@@ -1,4 +1,5 @@
 import styles from './CommentList.module.css';
+import ElementalPagination from "../../ui/Pagination/ElementalPagination/ElementalPagination";
 
 function CommentList(props) {
     const commentsItems = props.comments.map(comment => {
@@ -14,7 +15,8 @@ function CommentList(props) {
 
     return (
         <ul className={styles.comments}>
-            {commentsItems}
+            <ElementalPagination items={commentsItems}/>
+            {/*{commentsItems}*/}
         </ul>
     );
 }
