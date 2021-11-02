@@ -71,6 +71,12 @@ function NewsletterRegistration() {
 
     const emailValidityClasses = `${styles.control} ${emailInputIsInvalid ? styles.invalid : ''}`;
 
+    const preventWhiteSpaceOnKeyDown = (e) => {
+        if (e.key === " ") {
+            e.preventDefault();
+        }
+    }
+
     return (
         <section className={styles.newsletter}>
             <h2>Sign up to stay updated!</h2>
@@ -88,6 +94,7 @@ function NewsletterRegistration() {
                         value={emailState}
                         onChange={emailInputChangeHandler}
                         // onBlur={emailInputBlurHandler}
+                        onKeyDown={preventWhiteSpaceOnKeyDown}
                     />
                     <button disabled={!formIsValid}>Register</button>
                 </div>
